@@ -1,0 +1,9 @@
+accel_lis3dh.o: boardlibs\Accel_LIS3DH.c
+accel_lis3dh.o: E:\Keil\ARM\Inc\ST\STM32F2xx\stm32f2xx.h
+accel_lis3dh.o: E:\Keil\ARM\CMSIS\Include\core_cm3.h
+accel_lis3dh.o: E:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+accel_lis3dh.o: E:\Keil\ARM\CMSIS\Include\core_cmInstr.h
+accel_lis3dh.o: E:\Keil\ARM\CMSIS\Include\core_cmFunc.h
+accel_lis3dh.o: E:\Keil\ARM\Inc\ST\STM32F2xx\system_stm32f2xx.h
+accel_lis3dh.o: boardlibs\Accel.h
+accel_lis3dh.o: boardlibs\I2C.h

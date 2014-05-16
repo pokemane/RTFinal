@@ -45,7 +45,7 @@ I (E:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDB3D1C)
 I (E:\Keil\ARM\Inc\ST\STM32F2xx\system_stm32f2xx.h)(0x4F58EDCA)
 I (boardlibs\JOY.h)(0x4F58EE7C)
 I (boardlibs\I2C.h)(0x4F58EE7C)
-F (.\boardlibs\KBD.c)(0x4F58EE7C)(-c --cpu Cortex-M3 -D__RTX -g -O0 --apcs=interwork -I E:\Keil\ARM\RV31\INC -I E:\Keil\ARM\CMSIS\Include -I E:\Keil\ARM\Inc\ST\STM32F2xx -o "kbd.o" --omf_browse "kbd.crf" --depend "kbd.d")
+F (.\boardlibs\KBD.c)(0x5376A553)(-c --cpu Cortex-M3 -D__RTX -g -O0 --apcs=interwork -I E:\Keil\ARM\RV31\INC -I E:\Keil\ARM\CMSIS\Include -I E:\Keil\ARM\Inc\ST\STM32F2xx -o "kbd.o" --omf_browse "kbd.crf" --depend "kbd.d")
 I (E:\Keil\ARM\Inc\ST\STM32F2xx\stm32f2xx.h)(0x4FFB1C08)
 I (E:\Keil\ARM\CMSIS\Include\core_cm3.h)(0x5006D242)
 I (E:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB17B44)

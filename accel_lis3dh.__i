@@ -1,0 +1,5 @@
+-c --cpu Cortex-M3 -D__RTX -g -O0 --apcs=interwork 
+-I E:\Keil\ARM\RV31\INC 
+-I E:\Keil\ARM\CMSIS\Include 
+-I E:\Keil\ARM\Inc\ST\STM32F2xx 
+-o "accel_lis3dh.o" --omf_browse "accel_lis3dh.crf" --depend "accel_lis3dh.d" "boardlibs\Accel_LIS3DH.c"

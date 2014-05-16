@@ -1,0 +1,9 @@
+cam.o: boardlibs\CAM.c
+cam.o: E:\Keil\ARM\Inc\ST\STM32F2xx\stm32f2xx.h
+cam.o: E:\Keil\ARM\CMSIS\Include\core_cm3.h
+cam.o: E:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+cam.o: E:\Keil\ARM\CMSIS\Include\core_cmInstr.h
+cam.o: E:\Keil\ARM\CMSIS\Include\core_cmFunc.h
+cam.o: E:\Keil\ARM\Inc\ST\STM32F2xx\system_stm32f2xx.h
+cam.o: boardlibs\I2C.h
+cam.o: boardlibs\CAM.h

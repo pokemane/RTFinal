@@ -1,0 +1,15 @@
+textmessagemain.o: TextMessageMain.c
+textmessagemain.o: E:\Keil\ARM\Inc\ST\STM32F2xx\stm32f2xx.h
+textmessagemain.o: E:\Keil\ARM\CMSIS\Include\core_cm3.h
+textmessagemain.o: E:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+textmessagemain.o: E:\Keil\ARM\CMSIS\Include\core_cmInstr.h
+textmessagemain.o: E:\Keil\ARM\CMSIS\Include\core_cmFunc.h
+textmessagemain.o: E:\Keil\ARM\Inc\ST\STM32F2xx\system_stm32f2xx.h
+textmessagemain.o: E:\Keil\ARM\RV31\INC\rtl.h
+textmessagemain.o: boardlibs\GLCD.h
+textmessagemain.o: boardlibs\Serial.h
+textmessagemain.o: boardlibs\JOY.h
+textmessagemain.o: boardlibs\LED.h
+textmessagemain.o: boardlibs\I2C.h
+textmessagemain.o: boardlibs\sram.h
+textmessagemain.o: boardlibs\KBD.h

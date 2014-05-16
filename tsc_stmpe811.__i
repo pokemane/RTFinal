@@ -1,0 +1,5 @@
+-c --cpu Cortex-M3 -D__RTX -g -O0 --apcs=interwork 
+-I E:\Keil\ARM\RV31\INC 
+-I E:\Keil\ARM\CMSIS\Include 
+-I E:\Keil\ARM\Inc\ST\STM32F2xx 
+-o "tsc_stmpe811.o" --omf_browse "tsc_stmpe811.crf" --depend "tsc_stmpe811.d" "boardlibs\TSC_STMPE811.c"

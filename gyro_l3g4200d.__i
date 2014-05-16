@@ -1,0 +1,5 @@
+-c --cpu Cortex-M3 -D__RTX -g -O0 --apcs=interwork 
+-I E:\Keil\ARM\RV31\INC 
+-I E:\Keil\ARM\CMSIS\Include 
+-I E:\Keil\ARM\Inc\ST\STM32F2xx 
+-o "gyro_l3g4200d.o" --omf_browse "gyro_l3g4200d.crf" --depend "gyro_l3g4200d.d" "boardlibs\Gyro_L3G4200D.c"
