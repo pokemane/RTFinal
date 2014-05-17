@@ -22,7 +22,7 @@ E:\Keil\ARM\RV31\LIB\RTX_CM3.LIB --strict --scatter "FinalProject.sct"
 ### ADS-LD Output File: 'FinalProject.axf'
 ### ADS-LD Command File: 'FinalProject.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile 'FinalProject.lnp', Handle=0x000004BC
+### Creating CmdFile 'FinalProject.lnp', Handle=0x000001D4
 ### Writing '.lnp' file
 ### ADS-LD Command file 'FinalProject.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.

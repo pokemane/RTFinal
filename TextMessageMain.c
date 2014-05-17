@@ -8,18 +8,42 @@
 #include "boardlibs\sram.h"
 #include "boardlibs\KBD.h"
 
-
+// semaphores
 OS_SEM sem_Timer5Hz;
 OS_SEM sem_Timer1Hz;
+OS_SEM sem_TextRx;
+
+/* 
+* variables and mutexes
+*/
+
+// time structure
+typedef struct _Timestamp{
+	uint8_t seconds;
+	uint8_t minutes;
+	uint8_t hours;
+}Timestamp;
+
+OS_MUT mut_Timestamp;
+Timestamp osTimestamp = {0,0,0};
+
+// delcare mailbox for serial buffer
+// give it 1000 slots, should be more than enough even at 115200 baud
+os_mbx_declare(mbx_SerialBuffer,1000);
 
 __task void InitTask(void);
 __task void TimerTask(void);
+__task void ClockTask(void);
 __task void JoystickTask(void);
+__task void TextParse(void);
 
 void SerialInit(void);
 
 int main (void){
 	// initialize hardware
+	SerialInit();
+	JOY_Init();
+	LED_Init();
 	
 	// InitTask
 	os_sys_init_prio(InitTask, 250);
@@ -39,12 +63,17 @@ __task void InitTask(void){
 	// initialize semaphores
 	os_sem_init(&sem_Timer5Hz,0);
 	os_sem_init(&sem_Timer1Hz,0);
+	os_sem_init(&sem_TextRx, 0);
 	
 	// initialize mutexes
+	
+	// initialize mailboxes
+	os_mbx_init(&mbx_SerialBuffer, sizeof(mbx_SerialBuffer));
 	
 	// initialize tasks
 	os_tsk_create(TimerTask, 150);	// Timer task is relatively important.
 	os_tsk_create(JoystickTask, 100);
+	os_tsk_create(ClockTask, 175);		// high prio since we need to timestamp messages
 	
 	//sudoku
 	os_tsk_delete_self();
@@ -72,6 +101,13 @@ __task void TimerTask(void){
 			os_sem_send(&sem_Timer1Hz);
 		}
 		counter %= 100; // makes sure the counter doesn't go over 100 (100*10ms = 1000ms = 1sec)
+	}
+}
+
+__task void ClockTask(void){
+	
+	for(;;){
+		
 	}
 	
 }
@@ -109,6 +145,27 @@ __task void JoystickTask(void){
 	}
 }
 
+// Text Parsing and Saving
+__task void TextParse(void){
+	static uint8_t charLimit = 160;
+	static uint32_t queueSpace;
+	static uint32_t i,j;
+	for(;;){
+		os_sem_wait(&sem_TextRx,0xffff);
+		
+		queueSpace = os_mbx_check(&mbx_SerialBuffer);
+		
+		for(i = 0 ; i<= (1000-queueSpace)/160 + 1 ; i++){ // for each required list element
+			// create new list element, link to last and tail
+			for(j = 0; j<charLimit; j++){  // fill list element with 160 characters max
+				// pseudocode for filling the message field in the list element
+				//listElement[i].message[j] = os_mbx_wait(&mbx_SerialBuffer,0xffff);
+			}
+		}
+		
+	}
+}
+
 
 /*
 *
@@ -125,9 +182,15 @@ void SerialInit(void){
 }
 
 void USART3_IRQHandler(void){
+	static uint8_t data;
 	uint8_t flag = USART3->SR & USART_SR_RXNE; // make a flag for the USART data buffer full & ready to read signal
 	if(flag == USART_SR_RXNE){	// if the flag is set
-		serBuff = SER_GetChar();	// get char in the buffer (will clear flag)
-		// isr_sem_send(&semSerial);
+		data = SER_GetChar();
+		if(isr_mbx_check(&mbx_SerialBuffer) > 0 && data >= 0x20 && data <= 0x7E){	// exclude the delete key, include space.  TODO implement a "backspace" feature!
+			isr_mbx_send(&mbx_SerialBuffer, data);	// wtf is this error even.  What is type void* ?
+		}
+		if(data == 0x0D){
+			isr_sem_send(&sem_TextRx);
+		}
 	}
 }
