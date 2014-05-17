@@ -13,3 +13,8 @@ textmessagemain.o: boardlibs\LED.h
 textmessagemain.o: boardlibs\I2C.h
 textmessagemain.o: boardlibs\sram.h
 textmessagemain.o: boardlibs\KBD.h
+textmessagemain.o: userlibs\LinkedList.h
+textmessagemain.o: userlibs\dbg.h
+textmessagemain.o: E:\Keil\ARM\ARMCC\bin\..\include\stdio.h
+textmessagemain.o: E:\Keil\ARM\ARMCC\bin\..\include\errno.h
+textmessagemain.o: E:\Keil\ARM\ARMCC\bin\..\include\string.h

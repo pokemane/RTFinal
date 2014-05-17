@@ -451,6 +451,11 @@
               <FileType>1</FileType>
               <FilePath>.\boardlibs\TSC_STMPE811.c</FilePath>
             </File>
+            <File>
+              <FileName>LinkedList.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\userlibs\LinkedList.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

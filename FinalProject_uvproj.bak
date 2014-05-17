@@ -406,6 +406,51 @@
               <FileType>1</FileType>
               <FilePath>.\boardlibs\RTX_Conf_CM.c</FilePath>
             </File>
+            <File>
+              <FileName>GLCD_16bitIF_STM32F2xx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\boardlibs\GLCD_16bitIF_STM32F2xx.c</FilePath>
+            </File>
+            <File>
+              <FileName>I2C_STM32F2xx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\boardlibs\I2C_STM32F2xx.c</FilePath>
+            </File>
+            <File>
+              <FileName>JOY.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\boardlibs\JOY.c</FilePath>
+            </File>
+            <File>
+              <FileName>KBD.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\boardlibs\KBD.c</FilePath>
+            </File>
+            <File>
+              <FileName>LED.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\boardlibs\LED.c</FilePath>
+            </File>
+            <File>
+              <FileName>Serial.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\boardlibs\Serial.c</FilePath>
+            </File>
+            <File>
+              <FileName>sram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\boardlibs\sram.c</FilePath>
+            </File>
+            <File>
+              <FileName>system_stm32f2xx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\boardlibs\system_stm32f2xx.c</FilePath>
+            </File>
+            <File>
+              <FileName>TSC_STMPE811.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\boardlibs\TSC_STMPE811.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

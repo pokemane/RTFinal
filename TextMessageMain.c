@@ -1,5 +1,5 @@
 #include <stm32f2xx.h>
-#include "rtl.h"
+#include <rtl.h>
 #include "boardlibs\GLCD.h"
 #include "boardlibs\Serial.h"
 #include "boardlibs\JOY.h"
@@ -7,6 +7,12 @@
 #include "boardlibs\I2C.h"
 #include "boardlibs\sram.h"
 #include "boardlibs\KBD.h"
+#include "userlibs\LinkedList.h"
+#include "userlibs\dbg.h"
+
+// memory pools for the linked list of messages
+_declare_box(listPool, sizeof(List), 1);	
+// should only need one block, since we only have 1 list to worry about.
 
 // semaphores
 OS_SEM sem_Timer5Hz;
@@ -107,7 +113,7 @@ __task void TimerTask(void){
 __task void ClockTask(void){
 	
 	for(;;){
-		
+		os_sem_wait(&sem_Timer1Hz,0xffff);
 	}
 	
 }
