@@ -13,6 +13,9 @@
 // memory pools for the linked list of messages
 _declare_box(listPool, sizeof(List), 1);	
 // should only need one block, since we only have 1 list to worry about.
+_declare_box(nodePool, sizeof(ListNode), 1000);
+// Possibly this is where we don't need to use _declare_box() because we can just
+// hand over the start address of the block of SRAM we want to use
 
 // semaphores
 OS_SEM sem_Timer5Hz;
@@ -165,7 +168,7 @@ __task void TextParse(void){
 			// create new list element, link to last and tail
 			for(j = 0; j<charLimit; j++){  // fill list element with 160 characters max
 				// pseudocode for filling the message field in the list element
-				//listElement[i].message[j] = os_mbx_wait(&mbx_SerialBuffer,0xffff);
+				// listElement[i].message[j] = os_mbx_wait(&mbx_SerialBuffer,0xffff);
 			}
 		}
 		
@@ -193,7 +196,7 @@ void USART3_IRQHandler(void){
 	if(flag == USART_SR_RXNE){	// if the flag is set
 		data = SER_GetChar();
 		if(isr_mbx_check(&mbx_SerialBuffer) > 0 && data >= 0x20 && data <= 0x7E){	// exclude the delete key, include space.  TODO implement a "backspace" feature!
-			isr_mbx_send(&mbx_SerialBuffer, data);	// wtf is this error even.  What is type void* ?
+			isr_mbx_send(&mbx_SerialBuffer, (void *)data);	// have to cast the data to pointer type
 		}
 		if(data == 0x0D){
 			isr_sem_send(&sem_TextRx);

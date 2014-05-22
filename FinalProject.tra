@@ -13,8 +13,9 @@
 ### List of Objects: adding '"sram.o"'
 ### List of Objects: adding '"system_stm32f2xx.o"'
 ### List of Objects: adding '"tsc_stmpe811.o"'
+### List of Objects: adding '"linkedlist.o"'
 ### ADS-LD Command completed:
---cpu Cortex-M3 "startup_stm32f2xx.o" "textmessagemain.o" "rtx_conf_cm.o" "glcd_16bitif_stm32f2xx.o" "i2c_stm32f2xx.o" "joy.o" "kbd.o" "led.o" "serial.o" "sram.o" "system_stm32f2xx.o" "tsc_stmpe811.o" 
+--cpu Cortex-M3 "startup_stm32f2xx.o" "textmessagemain.o" "rtx_conf_cm.o" "glcd_16bitif_stm32f2xx.o" "i2c_stm32f2xx.o" "joy.o" "kbd.o" "led.o" "serial.o" "sram.o" "system_stm32f2xx.o" "tsc_stmpe811.o" "linkedlist.o" 
 E:\Keil\ARM\RV31\LIB\RTX_CM3.LIB --strict --scatter "FinalProject.sct" 
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
 --info sizes --info totals --info unused --info veneers 
@@ -22,7 +23,7 @@ E:\Keil\ARM\RV31\LIB\RTX_CM3.LIB --strict --scatter "FinalProject.sct"
 ### ADS-LD Output File: 'FinalProject.axf'
 ### ADS-LD Command File: 'FinalProject.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile 'FinalProject.lnp', Handle=0x000001D4
+### Creating CmdFile 'FinalProject.lnp', Handle=0x000003B8
 ### Writing '.lnp' file
 ### ADS-LD Command file 'FinalProject.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.
