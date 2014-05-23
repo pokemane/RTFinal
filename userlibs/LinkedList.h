@@ -9,33 +9,42 @@
 #define __LNKLST_H
 
 #include <stdint.h>
+#include "..\TextMessage.h"
 
 // definition so that we can reference this struct later (in node construction)
-struct ListNode;
+// struct ListNode;
+typedef struct _NodeData {
+	uint8_t text[160];			// text to be stored
+	uint8_t cnt;						// how many items are in this message
+	uint8_t sub;						// if the text is broken up, increment this to show a "1/2, 2/2" type deal later on
+	Timestamp time;					// timestamp struct so we minimize data parsing between functions
+} NodeData;
 
-typedef struct ListNode {
-	struct ListNode *next;	// next element in list
-	struct ListNode *prev;	// previous element in list
-	void *value;						// value to be stored, type TBD
+typedef struct _ListNode {
+	struct _ListNode *next;	// next element in list
+	struct _ListNode *prev;	// previous element in list
+	NodeData data;
 } ListNode;
 
-typedef struct List {
+typedef struct _List {
 	uint32_t count;			// # elements in list, always updated
 	ListNode *first;		// head of list
 	ListNode *last;			// tail of list
 } List;
 
-List *List_create(void *pool);	// have to hand it the pool because of how the OS memory management macros work
-void List_destroy(List *list, void *pool);
-void List_clear(List *list, void *pool);
-void List_clear_destroy(List *list, void *pool);
+//List *List_create(void);	// we don't need this.
+void List_destroy(List *list);
+void List_clear(List *list);
+void List_clear_destroy(List *list);
 
 // macros for easy info grab
 #define List_count(A) ((A)->count)
-#define List_first(A) ((A)->first != NULL ? (A)->first->value : NULL)
-#define List_last(A) ((A)->last != NULL ? (A)->last->value : NULL)
+// these get the values held in the first or last list element.  Marginally useful in this application.
+#define List_first(A) ((A)->first != NULL ? (A)->first->data : NULL)
+#define List_last(A) ((A)->last != NULL ? (A)->last->data : NULL)
 
-void List_push(List *list, void *value, void *pool);
+
+void List_push(List *list, NodeData *data);
 void *List_pop(List *list);
 
 void List_unshift(List *list, void *value);
@@ -43,10 +52,9 @@ void *List_shift(List *list);
 
 void *List_remove(List *list, ListNode *node);
 
-#define LIST_FOREACH(L, S, M, V) ListNode *_node = NULL;\
-		ListNode *V = NULL;\
-    for(V = _node = L->S; _node != NULL; V = _node = _node->M)
-
+#define LIST_FOREACH(List, First, Next, Cur) ListNode *_node = NULL;\
+		ListNode *Cur = NULL;\
+    for(Cur = _node = List->First; _node != NULL; Cur = _node = _node->Next)
 
 
 #endif /* __LNKLST_H */

@@ -1,21 +1,21 @@
 *** Creating Trace Output File 'FinalProject.tra' Ok.
 ### Preparing for ADS-LD.
 ### Creating ADS-LD Command Line
-### List of Objects: adding '"startup_stm32f2xx.o"'
 ### List of Objects: adding '"textmessagemain.o"'
 ### List of Objects: adding '"rtx_conf_cm.o"'
-### List of Objects: adding '"glcd_16bitif_stm32f2xx.o"'
+### List of Objects: adding '"system_stm32f2xx.o"'
+### List of Objects: adding '"startup_stm32f2xx.o"'
+### List of Objects: adding '"linkedlist.o"'
+### List of Objects: adding '"serial.o"'
+### List of Objects: adding '"led.o"'
+### List of Objects: adding '"kbd.o"'
 ### List of Objects: adding '"i2c_stm32f2xx.o"'
 ### List of Objects: adding '"joy.o"'
-### List of Objects: adding '"kbd.o"'
-### List of Objects: adding '"led.o"'
-### List of Objects: adding '"serial.o"'
+### List of Objects: adding '"glcd_16bitif_stm32f2xx.o"'
 ### List of Objects: adding '"sram.o"'
-### List of Objects: adding '"system_stm32f2xx.o"'
 ### List of Objects: adding '"tsc_stmpe811.o"'
-### List of Objects: adding '"linkedlist.o"'
 ### ADS-LD Command completed:
---cpu Cortex-M3 "startup_stm32f2xx.o" "textmessagemain.o" "rtx_conf_cm.o" "glcd_16bitif_stm32f2xx.o" "i2c_stm32f2xx.o" "joy.o" "kbd.o" "led.o" "serial.o" "sram.o" "system_stm32f2xx.o" "tsc_stmpe811.o" "linkedlist.o" 
+--cpu Cortex-M3 "textmessagemain.o" "rtx_conf_cm.o" "system_stm32f2xx.o" "startup_stm32f2xx.o" "linkedlist.o" "serial.o" "led.o" "kbd.o" "i2c_stm32f2xx.o" "joy.o" "glcd_16bitif_stm32f2xx.o" "sram.o" "tsc_stmpe811.o" 
 E:\Keil\ARM\RV31\LIB\RTX_CM3.LIB --strict --scatter "FinalProject.sct" 
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
 --info sizes --info totals --info unused --info veneers 
@@ -23,7 +23,7 @@ E:\Keil\ARM\RV31\LIB\RTX_CM3.LIB --strict --scatter "FinalProject.sct"
 ### ADS-LD Output File: 'FinalProject.axf'
 ### ADS-LD Command File: 'FinalProject.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile 'FinalProject.lnp', Handle=0x000003B8
+### Creating CmdFile 'FinalProject.lnp', Handle=0x000003DC
 ### Writing '.lnp' file
 ### ADS-LD Command file 'FinalProject.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.

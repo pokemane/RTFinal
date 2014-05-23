@@ -3,7 +3,7 @@
 <title>Static Call Graph - [C:\Users\JackAttack\Desktop\Final Project\FinalProject.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image C:\Users\JackAttack\Desktop\Final Project\FinalProject.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.02 [Build 28]: Last Updated: Sat May 17 14:12:44 2014
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.02 [Build 28]: Last Updated: Thu May 22 23:32:05 2014
 <BR><P>
 <H3>Maximum Stack Usage =        120 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -12,7 +12,7 @@ JoystickTask &rArr; JOY_GetKeys &rArr; IOE_Read &rArr; I2C_RdData &rArr; I2C_Rea
 <H3>
 Functions with no stack information
 </H3><UL>
- <LI><a href="#[b4]">__user_initial_stackheap</a>
+ <LI><a href="#[b6]">__user_initial_stackheap</a>
 </UL>
 </UL>
 <P>
@@ -42,7 +42,7 @@ Function Pointers
  <LI><a href="#[4f]">CAN2_SCE_IRQHandler</a> from startup_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(RESET)
  <LI><a href="#[4c]">CAN2_TX_IRQHandler</a> from startup_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(RESET)
  <LI><a href="#[5c]">CRYP_IRQHandler</a> from startup_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(RESET)
- <LI><a href="#[8e]">ClockTask</a> from textmessagemain.o(.text) referenced from textmessagemain.o(.text)
+ <LI><a href="#[90]">ClockTask</a> from textmessagemain.o(.text) referenced from textmessagemain.o(.text)
  <LI><a href="#[5b]">DCMI_IRQHandler</a> from startup_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(RESET)
  <LI><a href="#[18]">DMA1_Stream0_IRQHandler</a> from startup_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(RESET)
  <LI><a href="#[19]">DMA1_Stream1_IRQHandler</a> from startup_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(RESET)
@@ -80,8 +80,8 @@ Function Pointers
  <LI><a href="#[2e]">I2C2_EV_IRQHandler</a> from startup_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(RESET)
  <LI><a href="#[56]">I2C3_ER_IRQHandler</a> from startup_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(RESET)
  <LI><a href="#[55]">I2C3_EV_IRQHandler</a> from startup_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(RESET)
- <LI><a href="#[94]">InitTask</a> from textmessagemain.o(.text) referenced from textmessagemain.o(.text)
- <LI><a href="#[8b]">JoystickTask</a> from textmessagemain.o(.text) referenced from textmessagemain.o(.text)
+ <LI><a href="#[98]">InitTask</a> from textmessagemain.o(.text) referenced from textmessagemain.o(.text)
+ <LI><a href="#[8d]">JoystickTask</a> from textmessagemain.o(.text) referenced from textmessagemain.o(.text)
  <LI><a href="#[6]">MemManage_Handler</a> from startup_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(RESET)
  <LI><a href="#[4]">NMI_Handler</a> from startup_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(RESET)
  <LI><a href="#[50]">OTG_FS_IRQHandler</a> from startup_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(RESET)
@@ -102,7 +102,7 @@ Function Pointers
  <LI><a href="#[40]">SPI3_IRQHandler</a> from startup_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(RESET)
  <LI><a href="#[9]">SVC_Handler</a> from hal_cm3.o(.emb_text) referenced from startup_stm32f2xx.o(RESET)
  <LI><a href="#[c]">SysTick_Handler</a> from hal_cm3.o(.emb_text) referenced from startup_stm32f2xx.o(RESET)
- <LI><a href="#[60]">SystemInit</a> from system_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(.text)
+ <LI><a href="#[6d]">SystemInit</a> from system_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(.text)
  <LI><a href="#[f]">TAMP_STAMP_IRQHandler</a> from startup_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(RESET)
  <LI><a href="#[25]">TIM1_BRK_TIM9_IRQHandler</a> from startup_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(RESET)
  <LI><a href="#[28]">TIM1_CC_IRQHandler</a> from startup_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(RESET)
@@ -118,7 +118,8 @@ Function Pointers
  <LI><a href="#[3b]">TIM8_CC_IRQHandler</a> from startup_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(RESET)
  <LI><a href="#[3a]">TIM8_TRG_COM_TIM14_IRQHandler</a> from startup_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(RESET)
  <LI><a href="#[39]">TIM8_UP_TIM13_IRQHandler</a> from startup_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(RESET)
- <LI><a href="#[8d]">TimerTask</a> from textmessagemain.o(.text) referenced from textmessagemain.o(.text)
+ <LI><a href="#[91]">TextParse</a> from textmessagemain.o(.text) referenced from textmessagemain.o(.text)
+ <LI><a href="#[8f]">TimerTask</a> from textmessagemain.o(.text) referenced from textmessagemain.o(.text)
  <LI><a href="#[41]">UART4_IRQHandler</a> from startup_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(RESET)
  <LI><a href="#[42]">UART5_IRQHandler</a> from startup_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(RESET)
  <LI><a href="#[32]">USART1_IRQHandler</a> from startup_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(RESET)
@@ -127,53 +128,55 @@ Function Pointers
  <LI><a href="#[54]">USART6_IRQHandler</a> from startup_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(RESET)
  <LI><a href="#[8]">UsageFault_Handler</a> from startup_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(RESET)
  <LI><a href="#[d]">WWDG_IRQHandler</a> from startup_stm32f2xx.o(.text) referenced from startup_stm32f2xx.o(RESET)
- <LI><a href="#[6e]">__main</a> from __main.o(!!!main) referenced from startup_stm32f2xx.o(.text)
- <LI><a href="#[6d]">os_idle_demon</a> from rtx_conf_cm.o(.text) referenced from rt_task.o(i.rt_sys_init)
+ <LI><a href="#[70]">__main</a> from __main.o(!!!main) referenced from startup_stm32f2xx.o(.text)
+ <LI><a href="#[6f]">os_idle_demon</a> from rtx_conf_cm.o(.text) referenced from rt_task.o(i.rt_sys_init)
  <LI><a href="#[5e]">rt_alloc_box</a> from rt_membox.o(i.rt_alloc_box) referenced from hal_cm3.o(.emb_text)
- <LI><a href="#[63]">rt_dly_wait</a> from rt_time.o(i.rt_dly_wait) referenced from textmessagemain.o(.text)
+ <LI><a href="#[65]">rt_dly_wait</a> from rt_time.o(i.rt_dly_wait) referenced from textmessagemain.o(.text)
+ <LI><a href="#[63]">rt_evt_clr</a> from rt_event.o(i.rt_evt_clr) referenced from textmessagemain.o(.text)
+ <LI><a href="#[62]">rt_evt_get</a> from rt_event.o(i.rt_evt_get) referenced from textmessagemain.o(.text)
+ <LI><a href="#[66]">rt_evt_set</a> from rt_event.o(i.rt_evt_set) referenced from textmessagemain.o(.text)
+ <LI><a href="#[60]">rt_evt_wait</a> from rt_event.o(i.rt_evt_wait) referenced from textmessagemain.o(.text)
  <LI><a href="#[5f]">rt_free_box</a> from rt_membox.o(i.rt_free_box) referenced from hal_cm3.o(.emb_text)
- <LI><a href="#[6a]">rt_mbx_check</a> from rt_mailbox.o(i.rt_mbx_check) referenced from textmessagemain.o(.text)
- <LI><a href="#[66]">rt_mbx_init</a> from rt_mailbox.o(i.rt_mbx_init) referenced from textmessagemain.o(.text)
- <LI><a href="#[6c]">rt_mut_release</a> from rt_mutex.o(i.rt_mut_release) referenced from rtx_conf_cm.o(.text)
- <LI><a href="#[6b]">rt_mut_wait</a> from rt_mutex.o(i.rt_mut_wait) referenced from rtx_conf_cm.o(.text)
- <LI><a href="#[65]">rt_sem_init</a> from rt_semaphore.o(i.rt_sem_init) referenced from textmessagemain.o(.text)
- <LI><a href="#[64]">rt_sem_send</a> from rt_semaphore.o(i.rt_sem_send) referenced from textmessagemain.o(.text)
- <LI><a href="#[62]">rt_sem_wait</a> from rt_semaphore.o(i.rt_sem_wait) referenced from textmessagemain.o(.text)
- <LI><a href="#[69]">rt_sys_init</a> from rt_task.o(i.rt_sys_init) referenced from textmessagemain.o(.text)
- <LI><a href="#[67]">rt_tsk_create</a> from rt_task.o(i.rt_tsk_create) referenced from textmessagemain.o(.text)
- <LI><a href="#[68]">rt_tsk_delete</a> from rt_task.o(i.rt_tsk_delete) referenced from textmessagemain.o(.text)
+ <LI><a href="#[69]">rt_mbx_init</a> from rt_mailbox.o(i.rt_mbx_init) referenced from textmessagemain.o(.text)
+ <LI><a href="#[68]">rt_mut_init</a> from rt_mutex.o(i.rt_mut_init) referenced from textmessagemain.o(.text)
+ <LI><a href="#[64]">rt_mut_release</a> from rt_mutex.o(i.rt_mut_release) referenced 2 times from textmessagemain.o(.text)
+ <LI><a href="#[61]">rt_mut_wait</a> from rt_mutex.o(i.rt_mut_wait) referenced 2 times from textmessagemain.o(.text)
+ <LI><a href="#[67]">rt_sem_init</a> from rt_semaphore.o(i.rt_sem_init) referenced from textmessagemain.o(.text)
+ <LI><a href="#[6c]">rt_sys_init</a> from rt_task.o(i.rt_sys_init) referenced from textmessagemain.o(.text)
+ <LI><a href="#[6a]">rt_tsk_create</a> from rt_task.o(i.rt_tsk_create) referenced from textmessagemain.o(.text)
+ <LI><a href="#[6b]">rt_tsk_delete</a> from rt_task.o(i.rt_tsk_delete) referenced from textmessagemain.o(.text)
 </UL>
 <P>
 <H3>
 Global Symbols
 </H3>
-<P><STRONG><a name="[6e]"></a>__main</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, __main.o(!!!main))
-<BR><BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
-<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
+<P><STRONG><a name="[70]"></a>__main</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, __main.o(!!!main))
+<BR><BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
+<LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
 </UL>
 
-<P><STRONG><a name="[77]"></a>__scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter))
-<BR><BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
+<P><STRONG><a name="[79]"></a>__scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter))
+<BR><BR>[Called By]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
 </UL>
 
-<P><STRONG><a name="[79]"></a>__scatterload_rt2</STRONG> (Thumb, 44 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
+<P><STRONG><a name="[7b]"></a>__scatterload_rt2</STRONG> (Thumb, 44 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry
 </UL>
 
 <P><STRONG><a name="[d0]"></a>__scatterload_rt2_thumb_only</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
 
 <P><STRONG><a name="[d1]"></a>__scatterload_null</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __scatter.o(!!!scatter), UNUSED)
 
-<P><STRONG><a name="[7a]"></a>__scatterload_copy</STRONG> (Thumb, 26 bytes, Stack size unknown bytes, __scatter_copy.o(!!handler_copy), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_copy
+<P><STRONG><a name="[7c]"></a>__scatterload_copy</STRONG> (Thumb, 26 bytes, Stack size unknown bytes, __scatter_copy.o(!!handler_copy), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_copy
 </UL>
-<BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_copy
+<BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_copy
 </UL>
 
 <P><STRONG><a name="[d2]"></a>__scatterload_zeroinit</STRONG> (Thumb, 28 bytes, Stack size unknown bytes, __scatter_zi.o(!!handler_zi), UNUSED)
 
-<P><STRONG><a name="[7e]"></a>__rt_lib_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit.o(.ARM.Collect$$libinit$$00000000))
-<BR><BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_li
+<P><STRONG><a name="[80]"></a>__rt_lib_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit.o(.ARM.Collect$$libinit$$00000000))
+<BR><BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_li
 </UL>
 
 <P><STRONG><a name="[d3]"></a>__rt_lib_init_alloca_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000002C))
@@ -216,8 +219,8 @@ Global Symbols
 
 <P><STRONG><a name="[e6]"></a>__rt_lib_init_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000000A))
 
-<P><STRONG><a name="[83]"></a>__rt_lib_shutdown</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown.o(.ARM.Collect$$libshutdown$$00000000))
-<BR><BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit_ls
+<P><STRONG><a name="[85]"></a>__rt_lib_shutdown</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown.o(.ARM.Collect$$libshutdown$$00000000))
+<BR><BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit_ls
 </UL>
 
 <P><STRONG><a name="[e7]"></a>__rt_lib_shutdown_fp_trap_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$00000006))
@@ -232,60 +235,60 @@ Global Symbols
 
 <P><STRONG><a name="[ec]"></a>__rt_lib_shutdown_user_alloc_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libshutdown2.o(.ARM.Collect$$libshutdown$$0000000B))
 
-<P><STRONG><a name="[78]"></a>__rt_entry</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtentry.o(.ARM.Collect$$rtentry$$00000000))
-<BR><BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_rt2
-<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
+<P><STRONG><a name="[7a]"></a>__rt_entry</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtentry.o(.ARM.Collect$$rtentry$$00000000))
+<BR><BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload_rt2
+<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
 </UL>
 
 <P><STRONG><a name="[ed]"></a>__rt_entry_presh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtentry2.o(.ARM.Collect$$rtentry$$00000002))
 
-<P><STRONG><a name="[7b]"></a>__rt_entry_sh</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtentry4.o(.ARM.Collect$$rtentry$$00000004))
+<P><STRONG><a name="[7d]"></a>__rt_entry_sh</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtentry4.o(.ARM.Collect$$rtentry$$00000004))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_sh &rArr; __user_setup_stackheap
 </UL>
-<BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
+<BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
-<P><STRONG><a name="[7d]"></a>__rt_entry_li</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtentry2.o(.ARM.Collect$$rtentry$$0000000A))
-<BR><BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init
+<P><STRONG><a name="[7f]"></a>__rt_entry_li</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtentry2.o(.ARM.Collect$$rtentry$$0000000A))
+<BR><BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init
 </UL>
 
 <P><STRONG><a name="[ee]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
-<P><STRONG><a name="[7f]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
+<P><STRONG><a name="[81]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; main &rArr; JOY_Init &rArr; IOE_Write &rArr; I2C_WrData &rArr; I2C_Addr &rArr; WaitFlagSet
 </UL>
-<BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
+<BR>[Calls]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
 </UL>
 
 <P><STRONG><a name="[ef]"></a>__rt_entry_postli_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtentry2.o(.ARM.Collect$$rtentry$$0000000C))
 
-<P><STRONG><a name="[b5]"></a>__rt_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit.o(.ARM.Collect$$rtexit$$00000000))
-<BR><BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
+<P><STRONG><a name="[b7]"></a>__rt_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit.o(.ARM.Collect$$rtexit$$00000000))
+<BR><BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
 </UL>
 
-<P><STRONG><a name="[82]"></a>__rt_exit_ls</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000003))
-<BR><BR>[Calls]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_shutdown
+<P><STRONG><a name="[84]"></a>__rt_exit_ls</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000003))
+<BR><BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_shutdown
 </UL>
 
 <P><STRONG><a name="[f0]"></a>__rt_exit_prels_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000002))
 
-<P><STRONG><a name="[84]"></a>__rt_exit_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000004))
-<BR><BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_exit
+<P><STRONG><a name="[86]"></a>__rt_exit_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit2.o(.ARM.Collect$$rtexit$$00000004))
+<BR><BR>[Calls]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_exit
 </UL>
 
 <P><STRONG><a name="[cb]"></a>rt_set_PSP</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, hal_cm3.o(.emb_text))
-<BR><BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sys_init
+<BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sys_init
 </UL>
 
 <P><STRONG><a name="[cf]"></a>rt_get_PSP</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, hal_cm3.o(.emb_text))
-<BR><BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_delete
+<BR><BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_delete
 </UL>
 
-<P><STRONG><a name="[93]"></a>os_set_env</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, hal_cm3.o(.emb_text))
-<BR><BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<P><STRONG><a name="[97]"></a>os_set_env</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, hal_cm3.o(.emb_text))
+<BR><BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[f1]"></a>_alloc_box</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, hal_cm3.o(.emb_text), UNUSED)
@@ -293,29 +296,129 @@ Global Symbols
 <P><STRONG><a name="[f2]"></a>_free_box</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, hal_cm3.o(.emb_text), UNUSED)
 
 <P><STRONG><a name="[9]"></a>SVC_Handler</STRONG> (Thumb, 124 bytes, Stack size 0 bytes, hal_cm3.o(.emb_text))
-<BR><BR>[Calls]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_stk_check
+<BR><BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_stk_check
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f2xx.o(RESET)
 </UL>
 <P><STRONG><a name="[b]"></a>PendSV_Handler</STRONG> (Thumb, 76 bytes, Stack size 0 bytes, hal_cm3.o(.emb_text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = PendSV_Handler &rArr; rt_pop_req &rArr; rt_mbx_psh &rArr; rt_put_prio
 </UL>
-<BR>[Calls]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_stk_check
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_pop_req
+<BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_stk_check
+<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_pop_req
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f2xx.o(RESET)
 </UL>
 <P><STRONG><a name="[c]"></a>SysTick_Handler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, hal_cm3.o(.emb_text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = SysTick_Handler &rArr; rt_systick &rArr; rt_dec_dly &rArr; rt_put_prio
 </UL>
-<BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_systick
+<BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_systick
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f2xx.o(RESET)
 </UL>
-<P><STRONG><a name="[89]"></a>OS_Tick_Handler</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, hal_cm3.o(.emb_text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_systick
-<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;os_tick_irqack
+<P><STRONG><a name="[8b]"></a>OS_Tick_Handler</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, hal_cm3.o(.emb_text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_systick
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;os_tick_irqack
 </UL>
+
+<P><STRONG><a name="[91]"></a>TextParse</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, textmessagemain.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> textmessagemain.o(.text)
+</UL>
+<P><STRONG><a name="[90]"></a>ClockTask</STRONG> (Thumb, 318 bytes, Stack size 0 bytes, textmessagemain.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> textmessagemain.o(.text)
+</UL>
+<P><STRONG><a name="[8d]"></a>JoystickTask</STRONG> (Thumb, 80 bytes, Stack size 0 bytes, textmessagemain.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = JoystickTask &rArr; JOY_GetKeys &rArr; IOE_Read &rArr; I2C_RdData &rArr; I2C_Read &rArr; WaitFlagSet
+</UL>
+<BR>[Calls]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;JOY_GetKeys
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> textmessagemain.o(.text)
+</UL>
+<P><STRONG><a name="[8f]"></a>TimerTask</STRONG> (Thumb, 116 bytes, Stack size 0 bytes, textmessagemain.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> textmessagemain.o(.text)
+</UL>
+<P><STRONG><a name="[98]"></a>InitTask</STRONG> (Thumb, 186 bytes, Stack size 0 bytes, textmessagemain.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> textmessagemain.o(.text)
+</UL>
+<P><STRONG><a name="[92]"></a>SerialInit</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, textmessagemain.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SerialInit
+</UL>
+<BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SER_Init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[82]"></a>main</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, textmessagemain.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = main &rArr; JOY_Init &rArr; IOE_Write &rArr; I2C_WrData &rArr; I2C_Addr &rArr; WaitFlagSet
+</UL>
+<BR>[Calls]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;os_set_env
+<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SRAM_Init
+<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Init
+<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;JOY_Init
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SerialInit
+</UL>
+<BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
+</UL>
+
+<P><STRONG><a name="[34]"></a>USART3_IRQHandler</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, textmessagemain.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = USART3_IRQHandler
+</UL>
+<BR>[Calls]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mbx_check
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SER_GetChar
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f2xx.o(RESET)
+</UL>
+<P><STRONG><a name="[6f]"></a>os_idle_demon</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, rtx_conf_cm.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> rt_task.o(i.rt_sys_init)
+</UL>
+<P><STRONG><a name="[71]"></a>os_tmr_call</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, rtx_conf_cm.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tmr_tick
+</UL>
+
+<P><STRONG><a name="[72]"></a>os_error</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, rtx_conf_cm.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_stk_check
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mbx_psh
+</UL>
+
+<P><STRONG><a name="[73]"></a>rt_init_robin</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, rtx_conf_cm.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sys_init
+</UL>
+
+<P><STRONG><a name="[74]"></a>rt_chk_robin</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, rtx_conf_cm.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_systick
+</UL>
+
+<P><STRONG><a name="[75]"></a>__user_perthread_libspace</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, rtx_conf_cm.o(.text), UNUSED, KEPT)
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __user_perthread_libspace
+</UL>
+<BR>[Calls]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_self
+</UL>
+
+<P><STRONG><a name="[76]"></a>_mutex_initialize</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, rtx_conf_cm.o(.text), UNUSED, KEPT)
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = _mutex_initialize
+</UL>
+<BR>[Calls]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mut_init
+</UL>
+
+<P><STRONG><a name="[77]"></a>_mutex_acquire</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, rtx_conf_cm.o(.text), UNUSED, KEPT)
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = _mutex_acquire
+</UL>
+<BR>[Calls]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_self
+</UL>
+
+<P><STRONG><a name="[78]"></a>_mutex_release</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, rtx_conf_cm.o(.text), UNUSED, KEPT)
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = _mutex_release
+</UL>
+<BR>[Calls]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_self
+</UL>
+
+<P><STRONG><a name="[6d]"></a>SystemInit</STRONG> (Thumb, 74 bytes, Stack size 8 bytes, system_stm32f2xx.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SystemInit
+</UL>
+<BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f2xx.o(.text)
+</UL>
+<P><STRONG><a name="[f3]"></a>SystemCoreClockUpdate</STRONG> (Thumb, 174 bytes, Stack size 16 bytes, system_stm32f2xx.o(.text), UNUSED)
 
 <P><STRONG><a name="[3]"></a>Reset_Handler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, startup_stm32f2xx.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f2xx.o(RESET)
@@ -606,367 +709,252 @@ Global Symbols
 <P><STRONG><a name="[d]"></a>WWDG_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f2xx.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f2xx.o(RESET)
 </UL>
-<P><STRONG><a name="[b4]"></a>__user_initial_stackheap</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup_stm32f2xx.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
+<P><STRONG><a name="[b6]"></a>__user_initial_stackheap</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup_stm32f2xx.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
-<P><STRONG><a name="[8e]"></a>ClockTask</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, textmessagemain.o(.text))
-<BR>[Address Reference Count : 1]<UL><LI> textmessagemain.o(.text)
-</UL>
-<P><STRONG><a name="[8b]"></a>JoystickTask</STRONG> (Thumb, 70 bytes, Stack size 0 bytes, textmessagemain.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = JoystickTask &rArr; JOY_GetKeys &rArr; IOE_Read &rArr; I2C_RdData &rArr; I2C_Read &rArr; WaitFlagSet
-</UL>
-<BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;JOY_GetKeys
-</UL>
-<BR>[Address Reference Count : 1]<UL><LI> textmessagemain.o(.text)
-</UL>
-<P><STRONG><a name="[8d]"></a>TimerTask</STRONG> (Thumb, 104 bytes, Stack size 0 bytes, textmessagemain.o(.text))
-<BR>[Address Reference Count : 1]<UL><LI> textmessagemain.o(.text)
-</UL>
-<P><STRONG><a name="[94]"></a>InitTask</STRONG> (Thumb, 98 bytes, Stack size 0 bytes, textmessagemain.o(.text))
-<BR>[Address Reference Count : 1]<UL><LI> textmessagemain.o(.text)
-</UL>
-<P><STRONG><a name="[8f]"></a>SerialInit</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, textmessagemain.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SerialInit
-</UL>
-<BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SER_Init
-</UL>
-<BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<P><STRONG><a name="[93]"></a>SER_Init</STRONG> (Thumb, 158 bytes, Stack size 0 bytes, serial.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SerialInit
 </UL>
 
-<P><STRONG><a name="[80]"></a>main</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, textmessagemain.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = main &rArr; JOY_Init &rArr; IOE_Write &rArr; I2C_WrData &rArr; I2C_Addr &rArr; WaitFlagSet
-</UL>
-<BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;os_set_env
-<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Init
-<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;JOY_Init
-<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SerialInit
-</UL>
-<BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
-</UL>
+<P><STRONG><a name="[f4]"></a>SER_PutChar</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, serial.o(.text), UNUSED)
 
-<P><STRONG><a name="[f3]"></a>TextParse</STRONG> (Thumb, 100 bytes, Stack size 0 bytes, textmessagemain.o(.text), UNUSED)
-
-<P><STRONG><a name="[34]"></a>USART3_IRQHandler</STRONG> (Thumb, 74 bytes, Stack size 8 bytes, textmessagemain.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = USART3_IRQHandler &rArr; isr_sem_send &rArr; rt_psq_enq
-</UL>
-<BR>[Calls]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mbx_check
-<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isr_sem_send
-<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isr_mbx_send
-<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SER_GetChar
-</UL>
-<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f2xx.o(RESET)
-</UL>
-<P><STRONG><a name="[6d]"></a>os_idle_demon</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, rtx_conf_cm.o(.text))
-<BR>[Address Reference Count : 1]<UL><LI> rt_task.o(i.rt_sys_init)
-</UL>
-<P><STRONG><a name="[6f]"></a>os_tmr_call</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, rtx_conf_cm.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tmr_tick
-</UL>
-
-<P><STRONG><a name="[70]"></a>os_error</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, rtx_conf_cm.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_psq_enq
-<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mbx_psh
-<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_stk_check
-</UL>
-
-<P><STRONG><a name="[71]"></a>rt_init_robin</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, rtx_conf_cm.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sys_init
-</UL>
-
-<P><STRONG><a name="[72]"></a>rt_chk_robin</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, rtx_conf_cm.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_systick
-</UL>
-
-<P><STRONG><a name="[73]"></a>__user_perthread_libspace</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, rtx_conf_cm.o(.text), UNUSED, KEPT)
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __user_perthread_libspace
-</UL>
-<BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_self
-</UL>
-
-<P><STRONG><a name="[74]"></a>_mutex_initialize</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, rtx_conf_cm.o(.text), UNUSED, KEPT)
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = _mutex_initialize
-</UL>
-<BR>[Calls]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mut_init
-</UL>
-
-<P><STRONG><a name="[75]"></a>_mutex_acquire</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, rtx_conf_cm.o(.text), UNUSED, KEPT)
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = _mutex_acquire
-</UL>
-<BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_self
-</UL>
-
-<P><STRONG><a name="[76]"></a>_mutex_release</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, rtx_conf_cm.o(.text), UNUSED, KEPT)
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = _mutex_release
-</UL>
-<BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_self
-</UL>
-
-<P><STRONG><a name="[9e]"></a>io_dir</STRONG> (Thumb, 90 bytes, Stack size 0 bytes, i2c_stm32f2xx.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Recovery
-</UL>
-
-<P><STRONG><a name="[9f]"></a>io_pin</STRONG> (Thumb, 86 bytes, Stack size 0 bytes, i2c_stm32f2xx.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Recovery
-</UL>
-
-<P><STRONG><a name="[a1]"></a>io_state</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, i2c_stm32f2xx.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Recovery
-</UL>
-
-<P><STRONG><a name="[a2]"></a>I2C_Init</STRONG> (Thumb, 218 bytes, Stack size 0 bytes, i2c_stm32f2xx.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Recovery
-</UL>
-
-<P><STRONG><a name="[9d]"></a>I2C_Recovery</STRONG> (Thumb, 158 bytes, Stack size 16 bytes, i2c_stm32f2xx.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = I2C_Recovery
-</UL>
-<BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Init
-<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_state
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_pin
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_dir
-<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Wait
-</UL>
-<BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RdData
-<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WrData
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RdBuf
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WrBuf
-</UL>
-
-<P><STRONG><a name="[a3]"></a>I2C_Start</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, i2c_stm32f2xx.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = I2C_Start &rArr; WaitFlagSet
-</UL>
-<BR>[Calls]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WaitFlagSet
-</UL>
-<BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RdData
-<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WrData
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RdBuf
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WrBuf
-</UL>
-
-<P><STRONG><a name="[a4]"></a>I2C_Stop</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, i2c_stm32f2xx.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = I2C_Stop &rArr; WaitFlagClr
-</UL>
-<BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WaitFlagClr
-</UL>
-<BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RdData
-<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WrData
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RdBuf
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WrBuf
-</UL>
-
-<P><STRONG><a name="[a5]"></a>I2C_Addr</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, i2c_stm32f2xx.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = I2C_Addr &rArr; WaitFlagSet
-</UL>
-<BR>[Calls]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WaitFlagSet
-</UL>
-<BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RdData
-<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WrData
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RdBuf
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WrBuf
-</UL>
-
-<P><STRONG><a name="[a6]"></a>I2C_Write</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, i2c_stm32f2xx.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = I2C_Write &rArr; WaitFlagSet
-</UL>
-<BR>[Calls]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WaitFlagSet
-</UL>
-<BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RdData
-<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WrData
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WrBuf
-</UL>
-
-<P><STRONG><a name="[a7]"></a>I2C_Read</STRONG> (Thumb, 58 bytes, Stack size 16 bytes, i2c_stm32f2xx.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = I2C_Read &rArr; WaitFlagSet
-</UL>
-<BR>[Calls]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WaitFlagSet
-</UL>
-<BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RdData
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RdBuf
-</UL>
-
-<P><STRONG><a name="[a8]"></a>I2C_WrBuf</STRONG> (Thumb, 150 bytes, Stack size 40 bytes, i2c_stm32f2xx.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Write
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Addr
-<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Stop
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Start
-<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Recovery
-</UL>
-
-<P><STRONG><a name="[a9]"></a>I2C_RdBuf</STRONG> (Thumb, 178 bytes, Stack size 40 bytes, i2c_stm32f2xx.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Read
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Addr
-<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Stop
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Start
-<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Recovery
-</UL>
-
-<P><STRONG><a name="[aa]"></a>I2C_WrData</STRONG> (Thumb, 158 bytes, Stack size 56 bytes, i2c_stm32f2xx.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = I2C_WrData &rArr; I2C_Addr &rArr; WaitFlagSet
-</UL>
-<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Write
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Addr
-<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Stop
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Start
-<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Recovery
-</UL>
-<BR>[Called By]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IOE_Write
-</UL>
-
-<P><STRONG><a name="[ab]"></a>I2C_RdData</STRONG> (Thumb, 196 bytes, Stack size 56 bytes, i2c_stm32f2xx.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = I2C_RdData &rArr; I2C_Read &rArr; WaitFlagSet
-</UL>
-<BR>[Calls]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Read
-<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Write
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Addr
-<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Stop
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Start
-<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Recovery
-</UL>
-<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IOE_Read
-</UL>
-
-<P><STRONG><a name="[91]"></a>JOY_Init</STRONG> (Thumb, 80 bytes, Stack size 8 bytes, joy.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = JOY_Init &rArr; IOE_Write &rArr; I2C_WrData &rArr; I2C_Addr &rArr; WaitFlagSet
-</UL>
-<BR>[Calls]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IOE_Write
-</UL>
-<BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[ad]"></a>JOY_UnInit</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, joy.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IOE_Write
-</UL>
-
-<P><STRONG><a name="[8c]"></a>JOY_GetKeys</STRONG> (Thumb, 98 bytes, Stack size 16 bytes, joy.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = JOY_GetKeys &rArr; IOE_Read &rArr; I2C_RdData &rArr; I2C_Read &rArr; WaitFlagSet
-</UL>
-<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IOE_Read
-</UL>
-<BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;JoystickTask
-</UL>
-
-<P><STRONG><a name="[92]"></a>LED_Init</STRONG> (Thumb, 268 bytes, Stack size 0 bytes, led.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[f4]"></a>LED_UnInit</STRONG> (Thumb, 150 bytes, Stack size 0 bytes, led.o(.text), UNUSED)
-
-<P><STRONG><a name="[b0]"></a>LED_On</STRONG> (Thumb, 66 bytes, Stack size 0 bytes, led.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Val
-</UL>
-
-<P><STRONG><a name="[b1]"></a>LED_Off</STRONG> (Thumb, 66 bytes, Stack size 0 bytes, led.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Val
-</UL>
-
-<P><STRONG><a name="[af]"></a>LED_Val</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, led.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Off
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_On
-</UL>
-
-<P><STRONG><a name="[f5]"></a>LED_Num</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, led.o(.text), UNUSED)
-
-<P><STRONG><a name="[90]"></a>SER_Init</STRONG> (Thumb, 158 bytes, Stack size 0 bytes, serial.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SerialInit
-</UL>
-
-<P><STRONG><a name="[f6]"></a>SER_PutChar</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, serial.o(.text), UNUSED)
-
-<P><STRONG><a name="[95]"></a>SER_GetChar</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, serial.o(.text))
+<P><STRONG><a name="[99]"></a>SER_GetChar</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, serial.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_IRQHandler
 </UL>
 
-<P><STRONG><a name="[60]"></a>SystemInit</STRONG> (Thumb, 74 bytes, Stack size 8 bytes, system_stm32f2xx.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SystemInit
-</UL>
-<BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
-</UL>
-<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f2xx.o(.text)
-</UL>
-<P><STRONG><a name="[f7]"></a>SystemCoreClockUpdate</STRONG> (Thumb, 174 bytes, Stack size 16 bytes, system_stm32f2xx.o(.text), UNUSED)
-
-<P><STRONG><a name="[f8]"></a>__user_libspace</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
-
-<P><STRONG><a name="[b3]"></a>__user_perproc_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
+<P><STRONG><a name="[95]"></a>LED_Init</STRONG> (Thumb, 268 bytes, Stack size 0 bytes, led.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[f9]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+<P><STRONG><a name="[f5]"></a>LED_UnInit</STRONG> (Thumb, 150 bytes, Stack size 0 bytes, led.o(.text), UNUSED)
 
-<P><STRONG><a name="[fa]"></a>__rt_heap_escrow$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+<P><STRONG><a name="[9e]"></a>LED_On</STRONG> (Thumb, 66 bytes, Stack size 0 bytes, led.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Val
+</UL>
 
-<P><STRONG><a name="[fb]"></a>__rt_heap_expand$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+<P><STRONG><a name="[9f]"></a>LED_Off</STRONG> (Thumb, 66 bytes, Stack size 0 bytes, led.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Val
+</UL>
 
-<P><STRONG><a name="[7c]"></a>__user_setup_stackheap</STRONG> (Thumb, 74 bytes, Stack size 8 bytes, sys_stackheap_outer.o(.text))
+<P><STRONG><a name="[9d]"></a>LED_Val</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, led.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Off
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_On
+</UL>
+
+<P><STRONG><a name="[f6]"></a>LED_Num</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, led.o(.text), UNUSED)
+
+<P><STRONG><a name="[a4]"></a>io_dir</STRONG> (Thumb, 90 bytes, Stack size 0 bytes, i2c_stm32f2xx.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Recovery
+</UL>
+
+<P><STRONG><a name="[a5]"></a>io_pin</STRONG> (Thumb, 86 bytes, Stack size 0 bytes, i2c_stm32f2xx.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Recovery
+</UL>
+
+<P><STRONG><a name="[a7]"></a>io_state</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, i2c_stm32f2xx.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Recovery
+</UL>
+
+<P><STRONG><a name="[a8]"></a>I2C_Init</STRONG> (Thumb, 218 bytes, Stack size 0 bytes, i2c_stm32f2xx.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Recovery
+</UL>
+
+<P><STRONG><a name="[a3]"></a>I2C_Recovery</STRONG> (Thumb, 158 bytes, Stack size 16 bytes, i2c_stm32f2xx.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = I2C_Recovery
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Init
+<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_state
+<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_pin
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_dir
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Wait
+</UL>
+<BR>[Called By]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RdData
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WrData
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RdBuf
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WrBuf
+</UL>
+
+<P><STRONG><a name="[a9]"></a>I2C_Start</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, i2c_stm32f2xx.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = I2C_Start &rArr; WaitFlagSet
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WaitFlagSet
+</UL>
+<BR>[Called By]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RdData
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WrData
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RdBuf
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WrBuf
+</UL>
+
+<P><STRONG><a name="[aa]"></a>I2C_Stop</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, i2c_stm32f2xx.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = I2C_Stop &rArr; WaitFlagClr
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WaitFlagClr
+</UL>
+<BR>[Called By]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RdData
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WrData
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RdBuf
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WrBuf
+</UL>
+
+<P><STRONG><a name="[ab]"></a>I2C_Addr</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, i2c_stm32f2xx.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = I2C_Addr &rArr; WaitFlagSet
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WaitFlagSet
+</UL>
+<BR>[Called By]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RdData
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WrData
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RdBuf
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WrBuf
+</UL>
+
+<P><STRONG><a name="[ac]"></a>I2C_Write</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, i2c_stm32f2xx.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = I2C_Write &rArr; WaitFlagSet
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WaitFlagSet
+</UL>
+<BR>[Called By]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RdData
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WrData
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WrBuf
+</UL>
+
+<P><STRONG><a name="[ad]"></a>I2C_Read</STRONG> (Thumb, 58 bytes, Stack size 16 bytes, i2c_stm32f2xx.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = I2C_Read &rArr; WaitFlagSet
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WaitFlagSet
+</UL>
+<BR>[Called By]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RdData
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RdBuf
+</UL>
+
+<P><STRONG><a name="[ae]"></a>I2C_WrBuf</STRONG> (Thumb, 150 bytes, Stack size 40 bytes, i2c_stm32f2xx.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Write
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Addr
+<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Stop
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Start
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Recovery
+</UL>
+
+<P><STRONG><a name="[af]"></a>I2C_RdBuf</STRONG> (Thumb, 178 bytes, Stack size 40 bytes, i2c_stm32f2xx.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Read
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Addr
+<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Stop
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Start
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Recovery
+</UL>
+
+<P><STRONG><a name="[b0]"></a>I2C_WrData</STRONG> (Thumb, 158 bytes, Stack size 56 bytes, i2c_stm32f2xx.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = I2C_WrData &rArr; I2C_Addr &rArr; WaitFlagSet
+</UL>
+<BR>[Calls]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Write
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Addr
+<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Stop
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Start
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Recovery
+</UL>
+<BR>[Called By]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IOE_Write
+</UL>
+
+<P><STRONG><a name="[b1]"></a>I2C_RdData</STRONG> (Thumb, 196 bytes, Stack size 56 bytes, i2c_stm32f2xx.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = I2C_RdData &rArr; I2C_Read &rArr; WaitFlagSet
+</UL>
+<BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Read
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Write
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Addr
+<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Stop
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Start
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Recovery
+</UL>
+<BR>[Called By]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IOE_Read
+</UL>
+
+<P><STRONG><a name="[94]"></a>JOY_Init</STRONG> (Thumb, 80 bytes, Stack size 8 bytes, joy.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = JOY_Init &rArr; IOE_Write &rArr; I2C_WrData &rArr; I2C_Addr &rArr; WaitFlagSet
+</UL>
+<BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IOE_Write
+</UL>
+<BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[b3]"></a>JOY_UnInit</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, joy.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IOE_Write
+</UL>
+
+<P><STRONG><a name="[8e]"></a>JOY_GetKeys</STRONG> (Thumb, 98 bytes, Stack size 16 bytes, joy.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = JOY_GetKeys &rArr; IOE_Read &rArr; I2C_RdData &rArr; I2C_Read &rArr; WaitFlagSet
+</UL>
+<BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IOE_Read
+</UL>
+<BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;JoystickTask
+</UL>
+
+<P><STRONG><a name="[96]"></a>SRAM_Init</STRONG> (Thumb, 466 bytes, Stack size 0 bytes, sram.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[f7]"></a>__user_libspace</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
+
+<P><STRONG><a name="[b5]"></a>__user_perproc_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
+</UL>
+
+<P><STRONG><a name="[f8]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+
+<P><STRONG><a name="[f9]"></a>__rt_heap_escrow$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+
+<P><STRONG><a name="[fa]"></a>__rt_heap_expand$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+
+<P><STRONG><a name="[7e]"></a>__user_setup_stackheap</STRONG> (Thumb, 74 bytes, Stack size 8 bytes, sys_stackheap_outer.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
 <LI>Call Chain = __user_setup_stackheap
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_initial_stackheap
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_perproc_libspace
+<BR>[Calls]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_initial_stackheap
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_perproc_libspace
 </UL>
-<BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_sh
-</UL>
-
-<P><STRONG><a name="[81]"></a>exit</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, exit.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit
-</UL>
-<BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
+<BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_sh
 </UL>
 
-<P><STRONG><a name="[85]"></a>_sys_exit</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, sys_exit.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit_exit
+<P><STRONG><a name="[83]"></a>exit</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, exit.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit
+</UL>
+<BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[fc]"></a>__I$use$semihosting</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+<P><STRONG><a name="[87]"></a>_sys_exit</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, sys_exit.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit_exit
+</UL>
 
-<P><STRONG><a name="[fd]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+<P><STRONG><a name="[fb]"></a>__I$use$semihosting</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[fe]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
+<P><STRONG><a name="[fc]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+
+<P><STRONG><a name="[fd]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
 
 <P><STRONG><a name="[ca]"></a>_init_box</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, rt_membox.o(i._init_box))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = _init_box
 </UL>
-<BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sys_init
+<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sys_init
 </UL>
 
 <P><STRONG><a name="[c9]"></a>dbg_init</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, hal_cm3.o(i.dbg_init))
-<BR><BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sys_init
+<BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sys_init
 </UL>
 
 <P><STRONG><a name="[ce]"></a>dbg_task_notify</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, hal_cm3.o(i.dbg_task_notify))
-<BR><BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_delete
-<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_create
+<BR><BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_delete
+<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_create
 </UL>
 
 <P><STRONG><a name="[c8]"></a>dbg_task_switch</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, hal_cm3.o(i.dbg_task_switch))
 <BR><BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_switch_req
 </UL>
 
-<P><STRONG><a name="[96]"></a>isr_mbx_send</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, rt_mailbox.o(i.isr_mbx_send))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = isr_mbx_send &rArr; rt_psq_enq
-</UL>
-<BR>[Calls]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_psq_enq
-<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_psh_req
-</UL>
-<BR>[Called By]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_IRQHandler
-</UL>
-
-<P><STRONG><a name="[97]"></a>isr_sem_send</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, rt_semaphore.o(i.isr_sem_send))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = isr_sem_send &rArr; rt_psq_enq
-</UL>
-<BR>[Calls]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_psq_enq
-<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_psh_req
-</UL>
-<BR>[Called By]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_IRQHandler
-</UL>
-
 <P><STRONG><a name="[cc]"></a>os_tick_init</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, rt_system.o(i.os_tick_init))
-<BR><BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sys_init
+<BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sys_init
 </UL>
 
-<P><STRONG><a name="[8a]"></a>os_tick_irqack</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, rt_system.o(i.os_tick_irqack), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_Tick_Handler
+<P><STRONG><a name="[8c]"></a>os_tick_irqack</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, rt_system.o(i.os_tick_irqack), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_Tick_Handler
 </UL>
 
 <P><STRONG><a name="[5e]"></a>rt_alloc_box</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, rt_membox.o(i.rt_alloc_box))
@@ -974,7 +962,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_alloc_box
 <LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_init_context
-<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_create
+<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_create
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> hal_cm3.o(.emb_text)
 </UL>
@@ -985,9 +973,9 @@ Global Symbols
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_get_first
 <LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_switch_req
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mut_wait
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sem_wait
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_dly_wait
+<BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mut_wait
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_evt_wait
+<LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_dly_wait
 </UL>
 
 <P><STRONG><a name="[bc]"></a>rt_dec_dly</STRONG> (Thumb, 106 bytes, Stack size 16 bytes, rt_list.o(i.rt_dec_dly))
@@ -995,7 +983,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_put_prio
 </UL>
-<BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_systick
+<BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_systick
 </UL>
 
 <P><STRONG><a name="[be]"></a>rt_dispatch</STRONG> (Thumb, 60 bytes, Stack size 16 bytes, rt_task.o(i.rt_dispatch))
@@ -1006,17 +994,23 @@ Global Symbols
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_get_first
 <LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_switch_req
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mut_release
-<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_delete
-<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_create
-<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sem_send
+<BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_delete
+<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_create
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mut_release
+<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_evt_set
 </UL>
 
-<P><STRONG><a name="[63]"></a>rt_dly_wait</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, rt_time.o(i.rt_dly_wait))
+<P><STRONG><a name="[65]"></a>rt_dly_wait</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, rt_time.o(i.rt_dly_wait))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = rt_dly_wait &rArr; rt_block &rArr; rt_put_dly
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_block
 </UL>
+<BR>[Address Reference Count : 1]<UL><LI> textmessagemain.o(.text)
+</UL>
+<P><STRONG><a name="[63]"></a>rt_evt_clr</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, rt_event.o(i.rt_evt_clr))
+<BR>[Address Reference Count : 1]<UL><LI> textmessagemain.o(.text)
+</UL>
+<P><STRONG><a name="[62]"></a>rt_evt_get</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, rt_event.o(i.rt_evt_get))
 <BR>[Address Reference Count : 1]<UL><LI> textmessagemain.o(.text)
 </UL>
 <P><STRONG><a name="[c0]"></a>rt_evt_psh</STRONG> (Thumb, 72 bytes, Stack size 8 bytes, rt_event.o(i.rt_evt_psh))
@@ -1025,24 +1019,38 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_rmv_dly
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_put_prio
 </UL>
-<BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_pop_req
+<BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_pop_req
 </UL>
 
+<P><STRONG><a name="[66]"></a>rt_evt_set</STRONG> (Thumb, 90 bytes, Stack size 16 bytes, rt_event.o(i.rt_evt_set))
+<BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = rt_evt_set &rArr; rt_dispatch &rArr; rt_put_prio
+</UL>
+<BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_rmv_dly
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_dispatch
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> textmessagemain.o(.text)
+</UL>
+<P><STRONG><a name="[60]"></a>rt_evt_wait</STRONG> (Thumb, 58 bytes, Stack size 16 bytes, rt_event.o(i.rt_evt_wait))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = rt_evt_wait &rArr; rt_block &rArr; rt_put_dly
+</UL>
+<BR>[Calls]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_block
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> textmessagemain.o(.text)
+</UL>
 <P><STRONG><a name="[5f]"></a>rt_free_box</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, rt_membox.o(i.rt_free_box))
-<BR><BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_delete
+<BR><BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_delete
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tmr_tick
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> hal_cm3.o(.emb_text)
 </UL>
 <P><STRONG><a name="[ba]"></a>rt_get_first</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, rt_list.o(i.rt_get_first))
-<BR><BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sem_psh
-<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mbx_psh
-<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_dispatch
+<BR><BR>[Called By]<UL><LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_dispatch
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_block
-<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mut_release
-<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sem_send
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_systick
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_pop_req
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mut_release
+<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_systick
+<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_pop_req
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sem_psh
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mbx_psh
 </UL>
 
 <P><STRONG><a name="[c3]"></a>rt_init_stack</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, hal_cm3.o(i.rt_init_stack))
@@ -1051,12 +1059,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_init_context
 </UL>
 
-<P><STRONG><a name="[6a]"></a>rt_mbx_check</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, rt_mailbox.o(i.rt_mbx_check))
+<P><STRONG><a name="[9a]"></a>rt_mbx_check</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, rt_mailbox.o(i.rt_mbx_check))
 <BR><BR>[Called By]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_IRQHandler
 </UL>
-<BR>[Address Reference Count : 1]<UL><LI> textmessagemain.o(.text)
-</UL>
-<P><STRONG><a name="[66]"></a>rt_mbx_init</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, rt_mailbox.o(i.rt_mbx_init))
+
+<P><STRONG><a name="[69]"></a>rt_mbx_init</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, rt_mailbox.o(i.rt_mbx_init))
 <BR>[Address Reference Count : 1]<UL><LI> textmessagemain.o(.text)
 </UL>
 <P><STRONG><a name="[c4]"></a>rt_mbx_psh</STRONG> (Thumb, 188 bytes, Stack size 24 bytes, rt_mailbox.o(i.rt_mbx_psh))
@@ -1065,16 +1072,17 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_rmv_dly
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_put_prio
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_get_first
-<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;os_error
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;os_error
 </UL>
-<BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_pop_req
-</UL>
-
-<P><STRONG><a name="[99]"></a>rt_mut_init</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, rt_mutex.o(i.rt_mut_init), UNUSED, KEPT)
-<BR><BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_initialize
+<BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_pop_req
 </UL>
 
-<P><STRONG><a name="[6c]"></a>rt_mut_release</STRONG> (Thumb, 164 bytes, Stack size 32 bytes, rt_mutex.o(i.rt_mut_release))
+<P><STRONG><a name="[68]"></a>rt_mut_init</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, rt_mutex.o(i.rt_mut_init))
+<BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_initialize
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> textmessagemain.o(.text)
+</UL>
+<P><STRONG><a name="[64]"></a>rt_mut_release</STRONG> (Thumb, 164 bytes, Stack size 32 bytes, rt_mutex.o(i.rt_mut_release))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = rt_mut_release &rArr; rt_dispatch &rArr; rt_put_prio
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_rmv_dly
@@ -1082,42 +1090,30 @@ Global Symbols
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_get_first
 <LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_dispatch
 </UL>
-<BR>[Address Reference Count : 1]<UL><LI> rtx_conf_cm.o(.text)
+<BR>[Address Reference Count : 2]<UL><LI> textmessagemain.o(.text)
+<LI> rtx_conf_cm.o(.text)
 </UL>
-<P><STRONG><a name="[6b]"></a>rt_mut_wait</STRONG> (Thumb, 96 bytes, Stack size 16 bytes, rt_mutex.o(i.rt_mut_wait))
+<P><STRONG><a name="[61]"></a>rt_mut_wait</STRONG> (Thumb, 96 bytes, Stack size 16 bytes, rt_mutex.o(i.rt_mut_wait))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = rt_mut_wait &rArr; rt_block &rArr; rt_put_dly
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_resort_prio
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_put_prio
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_block
 </UL>
-<BR>[Address Reference Count : 1]<UL><LI> rtx_conf_cm.o(.text)
+<BR>[Address Reference Count : 2]<UL><LI> textmessagemain.o(.text)
+<LI> rtx_conf_cm.o(.text)
 </UL>
-<P><STRONG><a name="[87]"></a>rt_pop_req</STRONG> (Thumb, 106 bytes, Stack size 16 bytes, rt_system.o(i.rt_pop_req))
+<P><STRONG><a name="[89]"></a>rt_pop_req</STRONG> (Thumb, 106 bytes, Stack size 16 bytes, rt_system.o(i.rt_pop_req))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = rt_pop_req &rArr; rt_mbx_psh &rArr; rt_put_prio
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sem_psh
-<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mbx_psh
+<BR>[Calls]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_evt_psh
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_put_rdy_first
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_get_first
 <LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_switch_req
-<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_evt_psh
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sem_psh
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mbx_psh
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PendSV_Handler
-</UL>
-
-<P><STRONG><a name="[b7]"></a>rt_psh_req</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, rt_system.o(i.rt_psh_req))
-<BR><BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isr_sem_send
-<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isr_mbx_send
-</UL>
-
-<P><STRONG><a name="[b6]"></a>rt_psq_enq</STRONG> (Thumb, 82 bytes, Stack size 16 bytes, rt_list.o(i.rt_psq_enq))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = rt_psq_enq
-</UL>
-<BR>[Calls]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;os_error
-</UL>
-<BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isr_sem_send
-<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isr_mbx_send
 </UL>
 
 <P><STRONG><a name="[b9]"></a>rt_put_dly</STRONG> (Thumb, 68 bytes, Stack size 8 bytes, rt_list.o(i.rt_put_dly))
@@ -1129,21 +1125,20 @@ Global Symbols
 <P><STRONG><a name="[bd]"></a>rt_put_prio</STRONG> (Thumb, 54 bytes, Stack size 12 bytes, rt_list.o(i.rt_put_prio))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = rt_put_prio
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sem_psh
-<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mbx_psh
+<BR>[Called By]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_evt_psh
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_resort_prio
 <LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_dispatch
-<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mut_wait
-<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mut_release
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sem_wait
-<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_evt_psh
+<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mut_wait
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mut_release
 <LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_dec_dly
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sem_psh
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mbx_psh
 </UL>
 
 <P><STRONG><a name="[bf]"></a>rt_put_rdy_first</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, rt_list.o(i.rt_put_rdy_first))
 <BR><BR>[Called By]<UL><LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_dispatch
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_systick
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_pop_req
+<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_systick
+<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_pop_req
 </UL>
 
 <P><STRONG><a name="[c5]"></a>rt_resort_prio</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, rt_list.o(i.rt_resort_prio))
@@ -1152,26 +1147,26 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_rmv_list
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_put_prio
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mut_wait
+<BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mut_wait
 </UL>
 
 <P><STRONG><a name="[c1]"></a>rt_rmv_dly</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, rt_list.o(i.rt_rmv_dly))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = rt_rmv_dly
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sem_psh
+<BR>[Called By]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_evt_psh
+<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_delete
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mut_release
+<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_evt_set
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sem_psh
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mbx_psh
-<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mut_release
-<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_delete
-<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sem_send
-<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_evt_psh
 </UL>
 
 <P><STRONG><a name="[c7]"></a>rt_rmv_list</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, rt_list.o(i.rt_rmv_list))
 <BR><BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_resort_prio
-<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_delete
+<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_delete
 </UL>
 
-<P><STRONG><a name="[65]"></a>rt_sem_init</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, rt_semaphore.o(i.rt_sem_init))
+<P><STRONG><a name="[67]"></a>rt_sem_init</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, rt_semaphore.o(i.rt_sem_init))
 <BR>[Address Reference Count : 1]<UL><LI> textmessagemain.o(.text)
 </UL>
 <P><STRONG><a name="[c6]"></a>rt_sem_psh</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, rt_semaphore.o(i.rt_sem_psh))
@@ -1181,30 +1176,13 @@ Global Symbols
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_put_prio
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_get_first
 </UL>
-<BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_pop_req
+<BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_pop_req
 </UL>
 
-<P><STRONG><a name="[64]"></a>rt_sem_send</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, rt_semaphore.o(i.rt_sem_send))
-<BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = rt_sem_send &rArr; rt_dispatch &rArr; rt_put_prio
+<P><STRONG><a name="[88]"></a>rt_stk_check</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, rt_system.o(i.rt_stk_check))
+<BR><BR>[Calls]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;os_error
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_rmv_dly
-<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_get_first
-<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_dispatch
-</UL>
-<BR>[Address Reference Count : 1]<UL><LI> textmessagemain.o(.text)
-</UL>
-<P><STRONG><a name="[62]"></a>rt_sem_wait</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, rt_semaphore.o(i.rt_sem_wait))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = rt_sem_wait &rArr; rt_block &rArr; rt_put_dly
-</UL>
-<BR>[Calls]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_put_prio
-<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_block
-</UL>
-<BR>[Address Reference Count : 1]<UL><LI> textmessagemain.o(.text)
-</UL>
-<P><STRONG><a name="[86]"></a>rt_stk_check</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, rt_system.o(i.rt_stk_check))
-<BR><BR>[Calls]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;os_error
-</UL>
-<BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_delete
+<BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_delete
 <LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PendSV_Handler
 <LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SVC_Handler
 </UL>
@@ -1214,11 +1192,11 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_dispatch
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_block
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_systick
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_pop_req
+<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_systick
+<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_pop_req
 </UL>
 
-<P><STRONG><a name="[69]"></a>rt_sys_init</STRONG> (Thumb, 266 bytes, Stack size 32 bytes, rt_task.o(i.rt_sys_init))
+<P><STRONG><a name="[6c]"></a>rt_sys_init</STRONG> (Thumb, 266 bytes, Stack size 32 bytes, rt_task.o(i.rt_sys_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = rt_sys_init &rArr; rt_tsk_create &rArr; rt_dispatch &rArr; rt_put_prio
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_set_PSP
@@ -1226,22 +1204,22 @@ Global Symbols
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dbg_init
 <LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_init_box
 <LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_init_context
-<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_init_robin
-<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_create
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_init_robin
+<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_create
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> textmessagemain.o(.text)
 </UL>
-<P><STRONG><a name="[88]"></a>rt_systick</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, rt_system.o(i.rt_systick))
+<P><STRONG><a name="[8a]"></a>rt_systick</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, rt_system.o(i.rt_systick))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = rt_systick &rArr; rt_dec_dly &rArr; rt_put_prio
 </UL>
 <BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_put_rdy_first
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_get_first
 <LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_switch_req
-<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_chk_robin
+<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_chk_robin
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tmr_tick
 <LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_dec_dly
 </UL>
-<BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_Tick_Handler
+<BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OS_Tick_Handler
 <LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
 </UL>
 
@@ -1249,12 +1227,12 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = rt_tmr_tick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_free_box
-<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;os_tmr_call
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;os_tmr_call
 </UL>
-<BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_systick
+<BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_systick
 </UL>
 
-<P><STRONG><a name="[67]"></a>rt_tsk_create</STRONG> (Thumb, 126 bytes, Stack size 24 bytes, rt_task.o(i.rt_tsk_create))
+<P><STRONG><a name="[6a]"></a>rt_tsk_create</STRONG> (Thumb, 126 bytes, Stack size 24 bytes, rt_task.o(i.rt_tsk_create))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = rt_tsk_create &rArr; rt_dispatch &rArr; rt_put_prio
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_alloc_box
@@ -1262,14 +1240,14 @@ Global Symbols
 <LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_dispatch
 <LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_init_context
 </UL>
-<BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sys_init
+<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sys_init
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> textmessagemain.o(.text)
 </UL>
-<P><STRONG><a name="[68]"></a>rt_tsk_delete</STRONG> (Thumb, 162 bytes, Stack size 24 bytes, rt_task.o(i.rt_tsk_delete))
+<P><STRONG><a name="[6b]"></a>rt_tsk_delete</STRONG> (Thumb, 162 bytes, Stack size 24 bytes, rt_task.o(i.rt_tsk_delete))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = rt_tsk_delete &rArr; rt_dispatch &rArr; rt_put_prio
 </UL>
-<BR>[Calls]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_stk_check
+<BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_stk_check
 <LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_rmv_list
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_rmv_dly
 <LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_get_PSP
@@ -1279,62 +1257,62 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> textmessagemain.o(.text)
 </UL>
-<P><STRONG><a name="[98]"></a>rt_tsk_self</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, rt_task.o(i.rt_tsk_self), UNUSED, KEPT)
-<BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_release
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_acquire
-<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_perthread_libspace
+<P><STRONG><a name="[9b]"></a>rt_tsk_self</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, rt_task.o(i.rt_tsk_self), UNUSED, KEPT)
+<BR><BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_release
+<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_acquire
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_perthread_libspace
 </UL>
 <P>
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[a0]"></a>Wait</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, i2c_stm32f2xx.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Recovery
+<P><STRONG><a name="[9c]"></a>SetSysClock</STRONG> (Thumb, 170 bytes, Stack size 0 bytes, system_stm32f2xx.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
 </UL>
 
-<P><STRONG><a name="[9a]"></a>WaitFlagSet</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, i2c_stm32f2xx.o(.text))
+<P><STRONG><a name="[a6]"></a>Wait</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, i2c_stm32f2xx.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Recovery
+</UL>
+
+<P><STRONG><a name="[a0]"></a>WaitFlagSet</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, i2c_stm32f2xx.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = WaitFlagSet
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_sr
+<BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_sr
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Read
-<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Write
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Addr
-<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Start
+<BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Read
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Write
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Addr
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Start
 </UL>
 
-<P><STRONG><a name="[9c]"></a>WaitFlagClr</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, i2c_stm32f2xx.o(.text))
+<P><STRONG><a name="[a2]"></a>WaitFlagClr</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, i2c_stm32f2xx.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = WaitFlagClr
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_sr
+<BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_sr
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Stop
-</UL>
-
-<P><STRONG><a name="[9b]"></a>I2C_sr</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, i2c_stm32f2xx.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WaitFlagClr
-<LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WaitFlagSet
+<BR>[Called By]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Stop
 </UL>
 
-<P><STRONG><a name="[ac]"></a>IOE_Write</STRONG> (Thumb, 18 bytes, Stack size 16 bytes, joy.o(.text))
+<P><STRONG><a name="[a1]"></a>I2C_sr</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, i2c_stm32f2xx.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WaitFlagClr
+<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WaitFlagSet
+</UL>
+
+<P><STRONG><a name="[b2]"></a>IOE_Write</STRONG> (Thumb, 18 bytes, Stack size 16 bytes, joy.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = IOE_Write &rArr; I2C_WrData &rArr; I2C_Addr &rArr; WaitFlagSet
 </UL>
-<BR>[Calls]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WrData
+<BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WrData
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;JOY_UnInit
-<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;JOY_Init
+<BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;JOY_UnInit
+<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;JOY_Init
 </UL>
 
-<P><STRONG><a name="[ae]"></a>IOE_Read</STRONG> (Thumb, 20 bytes, Stack size 16 bytes, joy.o(.text))
+<P><STRONG><a name="[b4]"></a>IOE_Read</STRONG> (Thumb, 20 bytes, Stack size 16 bytes, joy.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = IOE_Read &rArr; I2C_RdData &rArr; I2C_Read &rArr; WaitFlagSet
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RdData
+<BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_RdData
 </UL>
-<BR>[Called By]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;JOY_GetKeys
-</UL>
-
-<P><STRONG><a name="[b2]"></a>SetSysClock</STRONG> (Thumb, 170 bytes, Stack size 0 bytes, system_stm32f2xx.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
+<BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;JOY_GetKeys
 </UL>
 
 <P><STRONG><a name="[c2]"></a>rt_init_context</STRONG> (Thumb, 64 bytes, Stack size 16 bytes, rt_task.o(i.rt_init_context))
@@ -1343,8 +1321,8 @@ Local Symbols
 <BR>[Calls]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_init_stack
 <LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_alloc_box
 </UL>
-<BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_create
-<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sys_init
+<BR>[Called By]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_create
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_sys_init
 </UL>
 <P>
 <H3>

@@ -1,5 +1,6 @@
 #include <stm32f2xx.h>
 #include <rtl.h>
+
 #include "boardlibs\GLCD.h"
 #include "boardlibs\Serial.h"
 #include "boardlibs\JOY.h"
@@ -7,57 +8,70 @@
 #include "boardlibs\I2C.h"
 #include "boardlibs\sram.h"
 #include "boardlibs\KBD.h"
+
 #include "userlibs\LinkedList.h"
 #include "userlibs\dbg.h"
 
-// memory pools for the linked list of messages
-_declare_box(listPool, sizeof(List), 1);	
-// should only need one block, since we only have 1 list to worry about.
-_declare_box(nodePool, sizeof(ListNode), 1000);
-// Possibly this is where we don't need to use _declare_box() because we can just
-// hand over the start address of the block of SRAM we want to use
+#include "TextMessage.h"
 
-// semaphores
+// set up the SRAM memory spaces for the two lists
+#define MESSAGE_STR_OFFSET 4*sizeof(ListNode)
+uint32_t *MsgRXQ = (uint32_t *)mySRAM_BASE;	// the receive queue list
+uint32_t *MsgSTR = (uint32_t *)(mySRAM_BASE+MESSAGE_STR_OFFSET);	// the long-term storage list space
+
+// semaphores and events
 OS_SEM sem_Timer5Hz;
 OS_SEM sem_Timer1Hz;
 OS_SEM sem_TextRx;
 
-/* 
-* variables and mutexes
+uint16_t timer5Hz = 0x0002;
+uint16_t timer1Hz = 0x0001;
+
+uint16_t hourButton = 0x0010;
+uint16_t minButton	= 0x0020;
+
+uint16_t txtRx 		= 0x0001;
+
+/*
+* structures, variables, and mutexes
 */
 
-// time structure
-typedef struct _Timestamp{
-	uint8_t seconds;
-	uint8_t minutes;
-	uint8_t hours;
-}Timestamp;
-
-OS_MUT mut_Timestamp;
+OS_MUT mut_osTimestamp;
 Timestamp osTimestamp = {0,0,0};
 
+OS_MUT mut_msgList;
+List lstRXQ;
+List lstStrUsed;
+List lstStrFree;
+
 // delcare mailbox for serial buffer
-// give it 1000 slots, should be more than enough even at 115200 baud
-os_mbx_declare(mbx_SerialBuffer,1000);
+os_mbx_declare(mbx_MsgBuffer,4);
 
 __task void InitTask(void);
 __task void TimerTask(void);
+OS_TID idTimerTask;
 __task void ClockTask(void);
+OS_TID idClockTask;
 __task void JoystickTask(void);
+OS_TID idJoyTask;
 __task void TextParse(void);
+OS_TID idTextParse;
 
 void SerialInit(void);
+
 
 int main (void){
 	// initialize hardware
 	SerialInit();
 	JOY_Init();
 	LED_Init();
+	SRAM_Init();
 	
 	// InitTask
 	os_sys_init_prio(InitTask, 250);
 	
 }
+
 
 /*
 *
@@ -75,14 +89,30 @@ __task void InitTask(void){
 	os_sem_init(&sem_TextRx, 0);
 	
 	// initialize mutexes
+	os_mut_init(&mut_osTimestamp);
+	// the message input queue
+	lstRXQ.count = 0;
+	lstRXQ.first = (ListNode *)MsgRXQ;
+	lstRXQ.last  = NULL;
+	// the storage lists
+	os_mut_init(&mut_msgList);
+	// free spaces
+	lstStrFree.count = 1000;
+	lstStrFree.first = (ListNode *)MsgSTR;
+	lstStrFree.last  = NULL;
+	// used spaces
+	lstStrUsed.count = 0;
+	lstStrUsed.first = NULL;
+	lstStrUsed.last  = NULL;
 	
 	// initialize mailboxes
-	os_mbx_init(&mbx_SerialBuffer, sizeof(mbx_SerialBuffer));
+	os_mbx_init(&mbx_MsgBuffer, sizeof(mbx_MsgBuffer));
 	
 	// initialize tasks
-	os_tsk_create(TimerTask, 150);	// Timer task is relatively important.
-	os_tsk_create(JoystickTask, 100);
-	os_tsk_create(ClockTask, 175);		// high prio since we need to timestamp messages
+	idTimerTask = os_tsk_create(TimerTask, 150);	// Timer task is relatively important.
+	idJoyTask 	= os_tsk_create(JoystickTask, 100);
+	idClockTask = os_tsk_create(ClockTask, 175);		// high prio since we need to timestamp messages
+	idTextParse = os_tsk_create(TextParse, 170);
 	
 	//sudoku
 	os_tsk_delete_self();
@@ -91,87 +121,99 @@ __task void InitTask(void){
 // timer task for general-purpose polling and task triggering
 
 __task void TimerTask(void){
-	// timer with period 5Hz
-	// 10Hz is a little too fast, since the joystick movements aren't really used to scroll super fast and can cause issues.
-	// can actually set this to 100Hz, and then subdivide it and send out multiple timer semaphores for different timings.
 	static uint32_t counter = 0;
 	static uint32_t secondFreq = 1;				// frequencies in Hz of refresh rate for these events
-	static uint32_t buttonInputFreq = 5;
+	static uint32_t buttonInputFreq = 10;
 	for(;;){
 		os_dly_wait(10);	// base freq at 100Hz
 		counter++;
 		// set up if structure to get different timing frequencies
 		if (counter%(100/buttonInputFreq) == 0){	// 100Hz/5Hz = 20, * 10ms = 200ms = 5Hz
-			// 5Hz (can be 10Hz if we need) for the joystick and button checking.
-			os_sem_send(&sem_Timer5Hz);
+			os_evt_set(timer5Hz, idJoyTask);
 		}
 		if (counter%(100/secondFreq) == 0){// 100*10ms = 1000ms = 1sec
-			// this is for the per-second events (the timestamping basically)
-			os_sem_send(&sem_Timer1Hz);
+			os_evt_set(timer1Hz, idClockTask);
 		}
 		counter %= 100; // makes sure the counter doesn't go over 100 (100*10ms = 1000ms = 1sec)
 	}
 }
 
 __task void ClockTask(void){
-	
+	uint16_t flags;
 	for(;;){
-		os_sem_wait(&sem_Timer1Hz,0xffff);
+		// os_sem_wait(&sem_Timer1Hz,0xffff);
+		os_evt_wait_or(timer1Hz|hourButton|minButton, 0xffff);
+		// do the clock and timestamp stuff
+		// check out the timestamp
+		os_mut_wait(mut_osTimestamp,0xffff);
+		flags = os_evt_get();
+		if (flags & timer1Hz == timer1Hz){
+				osTimestamp.seconds++;
+				osTimestamp.minutes += osTimestamp.seconds/60;
+				osTimestamp.seconds %= 60;
+				osTimestamp.hours 	+= osTimestamp.minutes/60;
+				osTimestamp.minutes %= 60;
+				osTimestamp.hours 	%= 24;
+				os_evt_clr(timer1Hz, idClockTask);
+		}
+		if (flags & hourButton == hourButton){
+				osTimestamp.hours++;
+				osTimestamp.hours %= 24;
+				os_evt_clr(hourButton, idClockTask);
+		}
+		if(flags & minButton == minButton){
+				osTimestamp.minutes++;
+				osTimestamp.minutes %= 60;
+				os_evt_clr(minButton, idClockTask);
+		}
+		os_mut_release(mut_osTimestamp);
 	}
-	
 }
 
-__task void JoystickTask(void){
-	static uint32_t joystick;
+__task void JoystickTask(void){	// TODO:  must get this working after the data handling works.  Should set events for a screen task.
+	static uint32_t newJoy, oldJoy = 0;
 	for(;;){
-		os_sem_wait(&sem_Timer5Hz,0xffff);
-		while(os_sem_wait(&sem_Timer5Hz,0x0) != OS_R_TMO){}	// clear the semaphore (force binary behavior)
+		//os_sem_wait(&sem_Timer5Hz,0xffff);
+		//while(os_sem_wait(&sem_Timer5Hz,0x0) != OS_R_TMO){}	// clear the semaphore (force binary behavior)
 		// really this shouldn't ever be anything more thana binary semaphore but, just in case.
+		os_evt_wait_and(timer5Hz,0xffff);
 		
-		joystick = JOY_GetKeys();
+		newJoy = JOY_GetKeys();
 		//os_mut_wait(&mutCursor,0xffff);
-		
-		switch(joystick){
-			case JOY_DOWN:	// cursor left
-				//CursorPos.col = (CursorPos.col+15)%16;	// edited to be the same as the other, for consistency.
-				break;
-			case JOY_UP:	// cursor right
-				//CursorPos.col = (CursorPos.col+1)%16;
-				break;
-			case JOY_LEFT:	// cursor up
-				//CursorPos.row = (CursorPos.row+5)%6;	// modulus by non-powers-of-2 is screwed up in a binary system without floats (F%6 = 3, not 6)
-				break;
-			case JOY_RIGHT:	// cursor down
-				//CursorPos.row = (CursorPos.row+1)%6;
-				break;
-			default:
-				break;
+		if (newJoy != oldJoy){
+			switch(newJoy){
+				case JOY_DOWN:	// cursor left
+					//CursorPos.col = (CursorPos.col+15)%16;	// edited to be the same as the other, for consistency.
+					break;
+				case JOY_UP:	// cursor right
+					//CursorPos.col = (CursorPos.col+1)%16;
+					break;
+				case JOY_LEFT:	// cursor up
+					//CursorPos.row = (CursorPos.row+5)%6;	// modulus by non-powers-of-2 is screwed up in a binary system without floats (F%6 = 3, not 6)
+					break;
+				case JOY_RIGHT:	// cursor down
+					//CursorPos.row = (CursorPos.row+1)%6;
+					break;
+				default:
+					break;
+			}
+			// send some event here
+			oldJoy = newJoy;
 		}
-		
 		//os_mut_release(&mutCursor);
 		//os_sem_send(&semDisplayUpdate);
-		
+	
 	}
 }
 
 // Text Parsing and Saving
 __task void TextParse(void){
-	static uint8_t charLimit = 160;
-	static uint32_t queueSpace;
-	static uint32_t i,j;
+	//static uint8_t charLimit = 160;
+	//static uint32_t queueSpace;
+	//static uint32_t i,j;
 	for(;;){
-		os_sem_wait(&sem_TextRx,0xffff);
-		
-		queueSpace = os_mbx_check(&mbx_SerialBuffer);
-		
-		for(i = 0 ; i<= (1000-queueSpace)/160 + 1 ; i++){ // for each required list element
-			// create new list element, link to last and tail
-			for(j = 0; j<charLimit; j++){  // fill list element with 160 characters max
-				// pseudocode for filling the message field in the list element
-				// listElement[i].message[j] = os_mbx_wait(&mbx_SerialBuffer,0xffff);
-			}
-		}
-		
+		//os_sem_wait(&sem_TextRx,0xffff);
+			
 	}
 }
 
@@ -195,11 +237,11 @@ void USART3_IRQHandler(void){
 	uint8_t flag = USART3->SR & USART_SR_RXNE; // make a flag for the USART data buffer full & ready to read signal
 	if(flag == USART_SR_RXNE){	// if the flag is set
 		data = SER_GetChar();
-		if(isr_mbx_check(&mbx_SerialBuffer) > 0 && data >= 0x20 && data <= 0x7E){	// exclude the delete key, include space.  TODO implement a "backspace" feature!
-			isr_mbx_send(&mbx_SerialBuffer, (void *)data);	// have to cast the data to pointer type
+		if(isr_mbx_check(&mbx_MsgBuffer) > 0 && data >= 0x20 && data <= 0x7E){	// exclude the delete key, include space.  TODO implement a "backspace" feature!
+			// 
 		}
 		if(data == 0x0D){
-			isr_sem_send(&sem_TextRx);
+			// return character
 		}
 	}
 }

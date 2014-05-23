@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>Target 1</TargetName>
+      <TargetName>KeilDevBoard</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <TargetOption>
@@ -389,13 +389,8 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>Source Group 1</GroupName>
+          <GroupName>MainSource</GroupName>
           <Files>
-            <File>
-              <FileName>startup_stm32f2xx.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\startup_stm32f2xx.s</FilePath>
-            </File>
             <File>
               <FileName>TextMessageMain.c</FileName>
               <FileType>1</FileType>
@@ -407,9 +402,44 @@
               <FilePath>.\boardlibs\RTX_Conf_CM.c</FilePath>
             </File>
             <File>
-              <FileName>GLCD_16bitIF_STM32F2xx.c</FileName>
+              <FileName>system_stm32f2xx.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\boardlibs\GLCD_16bitIF_STM32F2xx.c</FilePath>
+              <FilePath>.\boardlibs\system_stm32f2xx.c</FilePath>
+            </File>
+            <File>
+              <FileName>startup_stm32f2xx.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\startup_stm32f2xx.s</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>userlibs</GroupName>
+          <Files>
+            <File>
+              <FileName>LinkedList.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\userlibs\LinkedList.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>libs</GroupName>
+          <Files>
+            <File>
+              <FileName>Serial.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\boardlibs\Serial.c</FilePath>
+            </File>
+            <File>
+              <FileName>LED.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\boardlibs\LED.c</FilePath>
+            </File>
+            <File>
+              <FileName>KBD.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\boardlibs\KBD.c</FilePath>
             </File>
             <File>
               <FileName>I2C_STM32F2xx.c</FileName>
@@ -422,19 +452,9 @@
               <FilePath>.\boardlibs\JOY.c</FilePath>
             </File>
             <File>
-              <FileName>KBD.c</FileName>
+              <FileName>GLCD_16bitIF_STM32F2xx.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\boardlibs\KBD.c</FilePath>
-            </File>
-            <File>
-              <FileName>LED.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\boardlibs\LED.c</FilePath>
-            </File>
-            <File>
-              <FileName>Serial.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\boardlibs\Serial.c</FilePath>
+              <FilePath>.\boardlibs\GLCD_16bitIF_STM32F2xx.c</FilePath>
             </File>
             <File>
               <FileName>sram.c</FileName>
@@ -442,19 +462,9 @@
               <FilePath>.\boardlibs\sram.c</FilePath>
             </File>
             <File>
-              <FileName>system_stm32f2xx.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\boardlibs\system_stm32f2xx.c</FilePath>
-            </File>
-            <File>
               <FileName>TSC_STMPE811.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\boardlibs\TSC_STMPE811.c</FilePath>
-            </File>
-            <File>
-              <FileName>LinkedList.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\userlibs\LinkedList.c</FilePath>
             </File>
           </Files>
         </Group>

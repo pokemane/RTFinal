@@ -10,4 +10,13 @@ linkedlist.o: E:\Keil\ARM\ARMCC\bin\..\include\stdio.h
 linkedlist.o: E:\Keil\ARM\ARMCC\bin\..\include\errno.h
 linkedlist.o: E:\Keil\ARM\ARMCC\bin\..\include\string.h
 linkedlist.o: userlibs\LinkedList.h
+linkedlist.o: userlibs\..\TextMessage.h
 linkedlist.o: E:\Keil\ARM\RV31\INC\rtl.h
+linkedlist.o: userlibs\..\boardlibs\GLCD.h
+linkedlist.o: userlibs\..\boardlibs\Serial.h
+linkedlist.o: userlibs\..\boardlibs\JOY.h
+linkedlist.o: userlibs\..\boardlibs\LED.h
+linkedlist.o: userlibs\..\boardlibs\I2C.h
+linkedlist.o: userlibs\..\boardlibs\sram.h
+linkedlist.o: userlibs\..\boardlibs\KBD.h
+linkedlist.o: userlibs\..\userlibs\LinkedList.h
