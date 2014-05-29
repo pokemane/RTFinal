@@ -64,6 +64,7 @@ ListNode *List_remove(List *list, ListNode *node){
 }
 
 // push and pop manipulate "last" direction or from tail
+// push puts a new item on the tail
 void List_push(List *list, ListNode *node){
 	if(list->last == NULL){
 		list->first = node;
@@ -76,12 +77,14 @@ void List_push(List *list, ListNode *node){
 	list->count++;
 }
 
+// pop returns the tail
 ListNode *List_pop(List *list){
 	ListNode *node = list->last;
 	return node != NULL ? List_remove(list, node) : NULL;
 }
 
 // shift and unshift manipulate the "first" or head
+// unshift "pushes" to the head
 void List_unshift(List *list, ListNode *node){
 	if(list->first == NULL){
 		list->last = node;
@@ -94,6 +97,7 @@ void List_unshift(List *list, ListNode *node){
 	list->count++;
 }
 
+// shift pops from the head
 ListNode *List_shift(List *list){
 	ListNode *node = list->first;
 	return node != NULL ? List_remove(list, node) : NULL;
