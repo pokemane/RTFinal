@@ -91,19 +91,22 @@ __task void InitTask(void){
 	// initialize mutexes
 	os_mut_init(&mut_osTimestamp);
 	// the message input queue
-	lstRXQ.count = 0;
-	lstRXQ.first = (ListNode *)MsgRXQ;
+	lstRXQ.count = 4;
+	lstRXQ.first = NULL;
 	lstRXQ.last  = NULL;
+	lstRXQ.startAddr = MsgRXQ;
 	// the storage lists
 	os_mut_init(&mut_msgList);
 	// free spaces
 	lstStrFree.count = 1000;
-	lstStrFree.first = (ListNode *)MsgSTR;
+	lstStrFree.first = NULL;
 	lstStrFree.last  = NULL;
+	lstStrFree.startAddr = MsgSTR;
 	// used spaces
 	lstStrUsed.count = 0;
 	lstStrUsed.first = NULL;
 	lstStrUsed.last  = NULL;
+	lstStrUsed.startAddr = NULL;
 	
 	// initialize mailboxes
 	os_mbx_init(&mbx_MsgBuffer, sizeof(mbx_MsgBuffer));

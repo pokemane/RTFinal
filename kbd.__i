@@ -1,5 +1,0 @@
--c --cpu Cortex-M3 -D__RTX -g -O0 --apcs=interwork 
--I E:\Keil\ARM\RV31\INC 
--I E:\Keil\ARM\CMSIS\Include 
--I E:\Keil\ARM\Inc\ST\STM32F2xx 
--o "kbd.o" --omf_browse "kbd.crf" --depend "kbd.d" "boardlibs\KBD.c"

@@ -16,14 +16,14 @@
 ### List of Objects: adding '"tsc_stmpe811.o"'
 ### ADS-LD Command completed:
 --cpu Cortex-M3 "textmessagemain.o" "rtx_conf_cm.o" "system_stm32f2xx.o" "startup_stm32f2xx.o" "linkedlist.o" "serial.o" "led.o" "kbd.o" "i2c_stm32f2xx.o" "joy.o" "glcd_16bitif_stm32f2xx.o" "sram.o" "tsc_stmpe811.o" 
-E:\Keil\ARM\RV31\LIB\RTX_CM3.LIB --strict --scatter "FinalProject.sct" 
+C:\Keil\ARM\RV31\LIB\RTX_CM3.LIB --strict --scatter "FinalProject.sct" 
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
 --info sizes --info totals --info unused --info veneers 
  --list ".\FinalProject.map" -o FinalProject.axf### Preparing Environment (PrepEnvAds)
 ### ADS-LD Output File: 'FinalProject.axf'
 ### ADS-LD Command File: 'FinalProject.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile 'FinalProject.lnp', Handle=0x000003DC
+### Creating CmdFile 'FinalProject.lnp', Handle=0x0000038C
 ### Writing '.lnp' file
 ### ADS-LD Command file 'FinalProject.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.

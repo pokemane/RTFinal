@@ -21,3 +21,17 @@
 *.i*86
 *.x86_64
 *.hex
+*.d
+*.crf
+*.__i
+FinalProject.axf
+FinalProject.htm
+FinalProject.lnp
+FinalProject.map
+FinalProject.plg
+FinalProject.tra
+FinalProject.uvgui.student
+FinalProject.uvgui_student.bak
+FinalProject.uvopt
+FinalProject_KeilDevBoard.dep
+FinalProject_uvopt.bak

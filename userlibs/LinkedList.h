@@ -16,7 +16,6 @@
 typedef struct _NodeData {
 	uint8_t text[160];			// text to be stored
 	uint8_t cnt;						// how many items are in this message
-	uint8_t sub;						// if the text is broken up, increment this to show a "1/2, 2/2" type deal later on
 	Timestamp time;					// timestamp struct so we minimize data parsing between functions
 } NodeData;
 
@@ -30,9 +29,10 @@ typedef struct _List {
 	uint32_t count;			// # elements in list, always updated
 	ListNode *first;		// head of list
 	ListNode *last;			// tail of list
+	uint32_t *startAddr;
 } List;
 
-//List *List_create(void);	// we don't need this.
+void List_init(List *list);
 void List_destroy(List *list);
 void List_clear(List *list);
 void List_clear_destroy(List *list);
@@ -44,13 +44,13 @@ void List_clear_destroy(List *list);
 #define List_last(A) ((A)->last != NULL ? (A)->last->data : NULL)
 
 
-void List_push(List *list, NodeData *data);
-void *List_pop(List *list);
+void List_push(List *list, ListNode *node);
+ListNode *List_pop(List *list);
 
-void List_unshift(List *list, void *value);
-void *List_shift(List *list);
+void List_unshift(List *list, ListNode *node);
+ListNode *List_shift(List *list);
 
-void *List_remove(List *list, ListNode *node);
+ListNode *List_remove(List *list, ListNode *node);
 
 #define LIST_FOREACH(List, First, Next, Cur) ListNode *_node = NULL;\
 		ListNode *Cur = NULL;\
