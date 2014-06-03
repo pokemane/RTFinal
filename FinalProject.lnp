@@ -1,5 +1,0 @@
---cpu Cortex-M3 "textmessagemain.o" "rtx_conf_cm.o" "system_stm32f2xx.o" "startup_stm32f2xx.o" "linkedlist.o" "serial.o" "led.o" "kbd.o" "i2c_stm32f2xx.o" "joy.o" "glcd_16bitif_stm32f2xx.o" "sram.o" "tsc_stmpe811.o" 
-C:\Keil\ARM\RV31\LIB\RTX_CM3.LIB --strict --scatter "FinalProject.sct" 
---summary_stderr --info summarysizes --map --xref --callgraph --symbols 
---info sizes --info totals --info unused --info veneers 
- --list ".\FinalProject.map" -o FinalProject.axf
