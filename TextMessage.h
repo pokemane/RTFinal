@@ -12,6 +12,10 @@
 
 #ifndef __TXTMSG_H
 #define __TXTMSG_H
+// I'm tired of not having access to booleans
+#define TRUE 1
+#define FALSE 0
+
 
 // timestamp structure, to be used for the program itself and in each message
 typedef struct _Timestamp {

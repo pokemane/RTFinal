@@ -15,9 +15,14 @@
 #include "TextMessage.h"
 
 // set up the SRAM memory spaces for the two lists
-#define MESSAGE_STR_OFFSET 4*sizeof(ListNode)
-uint32_t *MsgRXQ = (uint32_t *)mySRAM_BASE;	// the receive queue list
-uint32_t *MsgSTR = (uint32_t *)(mySRAM_BASE+MESSAGE_STR_OFFSET);	// the long-term storage list space
+//#define MESSAGE_STR_OFFSET 4*sizeof(ListNode)
+//uint32_t *MsgRXQ = (uint32_t *)mySRAM_BASE;	// the receive queue list
+//uint32_t *MsgSTR = (uint32_t *)(mySRAM_BASE+MESSAGE_STR_OFFSET);	// the long-term storage list space
+
+uint32_t *Storage = (uint32_t *)mySRAM_BASE;
+
+// the box for the receive queue
+_declare_box(poolRXQ, sizeof(ListNode), 4);
 
 // semaphores and events
 OS_SEM sem_Timer10Hz;
@@ -42,8 +47,8 @@ Timestamp osTimestamp = {0,0,0};
 OS_MUT mut_msgList;
 OS_MUT mut_freeList;
 List *lstRXQ;
-List *lstStrUsed;
-List *lstStrFree;
+List *lstStr;
+// List *lstStrFree;
 
 // delcare mailbox for serial buffer
 os_mbx_declare(mbx_MsgBuffer,4);
@@ -95,23 +100,31 @@ __task void InitTask(void){
 	lstRXQ->count = 4;
 	lstRXQ->first = NULL;
 	lstRXQ->last  = NULL;
-	lstRXQ->startAddr = MsgRXQ;
+	// lstRXQ->startAddr = MsgRXQ;
 	// the storage lists
 	os_mut_init(&mut_msgList);
 	// free spaces
 	os_mut_init(&mut_msgList);
-	lstStrFree->count = 1000;
-	lstStrFree->first = NULL;
-	lstStrFree->last  = NULL;
-	lstStrFree->startAddr = MsgSTR;
+	// lstStrFree->startAddr = MsgSTR;
 	// used spaces
-	lstStrUsed->count = 0;
-	lstStrUsed->first = NULL;
-	lstStrUsed->last  = NULL;
-	lstStrUsed->startAddr = NULL;
+	lstStr->count = 0;
+	lstStr->first = NULL;
+	lstStr->last  = NULL;
+	// lstStrUsed->startAddr = NULL;
 	
-	List_init(lstRXQ);
-	List_init(lstStrFree);
+	// initialize box for receive queue
+	_init_box(poolRXQ, sizeof(poolRXQ), sizeof(ListNode));
+	
+	// This is literally the holy grail part.
+	// give it the pool start (mySRAM_BASE)
+	// the size of the box, which is 1000*sizeof(ListNode) plus some overhead
+	// box size is the sizeof(ListNode).
+	// math taken from the _declare_box() macro for overhead and alignment calcs
+	_init_box(Storage, ((sizeof(ListNode)+3)/4)*(1000) + 3, sizeof(ListNode));
+	
+	
+	// List_init(lstRXQ);
+	// List_init(lstStrFree);
 	
 	// initialize mailboxes
 	os_mbx_init(&mbx_MsgBuffer, sizeof(mbx_MsgBuffer));
@@ -120,7 +133,7 @@ __task void InitTask(void){
 	idTimerTask = os_tsk_create(TimerTask, 150);		// Timer task is relatively important.
 	idJoyTask 	= os_tsk_create(JoystickTask, 100);
 	idClockTask = os_tsk_create(ClockTask, 175);		// high prio since we need to timestamp messages
-	idTextParse = os_tsk_create(TextParse, 170);
+	idTextRX = os_tsk_create(TextRX, 170);
 	
 	//sudoku
 	os_tsk_delete_self();
@@ -215,15 +228,22 @@ __task void JoystickTask(void){	// TODO:  must get this working after the data h
 }
 
 // Text Parsing and Saving
-__task void TextParse(void){
+__task void TextRX(void){
 	static ListNode	*newmsg;
 	for(;;){
 		os_mbx_wait(&mbx_MsgBuffer, (void **)&newmsg, 0xffff);
 		os_mut_wait(&mut_osTimestamp, 0xffff);
 		os_mut_wait(&mut_msgList, 0xffff);
 		
+		ListNode *message = (ListNode *)_alloc_box(Storage);
+		message->data = newmsg->data;
+		message->data->time = osTimestamp;
+		List_push(lstStr, message);	// put our thing as the most recent message
+		// TODO:  implement a "You've Got Mail" counting semaphore maybe.
+		_free_box(poolRXQ, newmsg);
 		
-		
+		os_mut_release(&mut_osTimestamp);
+		os_mut_release(&mut_msgList);
 	}
 }
 
@@ -243,42 +263,41 @@ void SerialInit(void){
 }
 
 void USART3_IRQHandler(void){
-	static uint8_t data;
-	static NodeData databuff;
-	static uint8_t countData = 0;
-	uint8_t sendflag = 0;
+	static uint8_t data;	// static to keep a running tally
+	static NodeData databuff;	// static buffer that just gets used over and over
+	static uint8_t countData = 0;	// our place in the buffer
+	static uint8_t sendflag = FALSE;
 	uint8_t flag = USART3->SR & USART_SR_RXNE; // make a flag for the USART data buffer full & ready to read signal
-	if(flag == USART_SR_RXNE){	// if the flag is set
+
+	if(flag == USART_SR_RXNE){	// if the flag is set.  If not, do nothing.
 		data = SER_GetChar();
 		if(isr_mbx_check(mbx_MsgBuffer) > 0){
 			if (data >= 0x20 && data <= 0x7E){	// exclude the backspace key, include space.  TODO implement a "backspace" feature!
 				databuff.text[countData] = data; // store serial input to data buffer
 				countData++;
+				if (countData == 160){	// if we've filled a page
+					databuff.cnt = countData;	// record the size of the message
+					countData = 0;	// reset the buffer data
+					// send to mailbox
+					sendflag = TRUE;
+				}
 			} else if (data == 0x7F){
 				// backspace character
-				countData--;
+				countData = (countData + 159)%160;	// move the cursor back one, and clamp at zero
+				
 			} else if (data == 0x0D){
 				// return
 				databuff.cnt = countData;
 				countData = 0;
 				// send to mailbox
-				sendflag = 1;
+				sendflag = TRUE;
 			}
-			
-			if (countData == 159){	// if we've filled a page
-				databuff.cnt = countData;
-				countData = 0;
-				// send to mailbox
-				sendflag = 1;
-			}
-			
-			if (sendflag == 1){
-				ListNode *rxnode = List_pop(lstStrFree);	// change to use OS stuff
+						
+			if (sendflag == TRUE){
+				ListNode *rxnode = (ListNodee *)_alloc_box(poolRXQ);	// TODO: change to use OS stuff
 				rxnode->data = databuff;
 				isr_mbx_send(&mbx_MsgBuffer, rxnode);
 			}
-			
 		}
-		
 	}		
 }

@@ -18,18 +18,18 @@
 // "free space" lists ONCE, and ONLY ONCE, before the OS starts.
 // TODO: should probably sanitize the data fields in the 
 // nodes to keep from getting ghost data
-void List_init(List *list){
-	uint32_t i;
-	if(list->startAddr != NULL){	// starting address of the list, which are 
-																// the SRAM offsets in this specific case.
-		for(i = 0; i < list->count; i++){	// push "new" nodes til we hit the size limit
-			ListNode *newnode = (ListNode *)(list->startAddr + i*sizeof(ListNode));
-			List_push(list, newnode);
-			list->count--;	// push will increment the list count, have to 
-											// decrement it in order to not loop infinitely
-		}
-	}
-}
+// void List_init(List *list){
+// 	uint32_t i;
+// 	if(list->startAddr != NULL){	// starting address of the list, which are 
+// 																// the SRAM offsets in this specific case.
+// 		for(i = 0; i < list->count; i++){	// push "new" nodes til we hit the size limit
+// 			ListNode *newnode = (ListNode *)(list->startAddr + i*sizeof(ListNode));
+// 			List_push(list, newnode);
+// 			list->count--;	// push will increment the list count, have to 
+// 											// decrement it in order to not loop infinitely
+// 		}
+// 	}
+// }
 
 ListNode *List_remove(List *list, ListNode *node){
 	ListNode *result = NULL;

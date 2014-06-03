@@ -29,7 +29,6 @@ typedef struct _List {
 	uint32_t count;			// # elements in list, always updated
 	ListNode *first;		// head of list
 	ListNode *last;			// tail of list
-	uint32_t *startAddr;
 } List;
 
 void List_init(List *list);
