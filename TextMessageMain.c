@@ -55,6 +55,8 @@ List *lstRXQ;
 List *lstStr;
 // List *lstStrFree;
 
+uint8_t *timeToString(void);
+
 // delcare mailbox for serial buffer
 os_mbx_declare(mbx_MsgBuffer,4);
 
@@ -129,7 +131,11 @@ __task void InitTask(void){
 	// the size of the box, which is 1000*sizeof(ListNode) plus some overhead
 	// box size is the sizeof(ListNode).
 	// math taken from the _declare_box() macro for overhead and alignment calcs
+<<<<<<< HEAD
 	_init_box(Storage, (((sizeof(ListNode)+3)/4)*(1000) + 3), sizeof(ListNode));
+=======
+	_init_box(Storage, (((sizeof(ListNode)+3)/4)*(1000) + 3)*4, sizeof(ListNode));
+>>>>>>> f4bb8aa860f45016e2cdfca76cddc0734b00fa4e
 	
 	
 	// List_init(lstRXQ);
@@ -157,6 +163,7 @@ __task void InitTask(void){
 */
 
 __task void DisplayTask(void){
+<<<<<<< HEAD
 	OS_RESULT error;
 	uint16_t flags;
 	for(;;){
@@ -165,6 +172,37 @@ __task void DisplayTask(void){
 			
 	}
 }
+=======
+	uint16_t flag;
+	for(;;){
+		os_evt_wait_or(dispClock|dispUser,0xffff);
+		flag = os_evt_get();
+		if (flag|dispClock == dispClock){
+			os_mut_wait(&mut_osTimestamp,0xffff);
+			GLCD_SetBackColor(Black);
+			GLCD_SetTextColor(White);
+			GLCD_DisplayString(0,0,1,timeToString());
+			os_mut_release(&mut_osTimestamp);
+		}
+			
+	}
+}
+
+uint8_t* timeToString(void){
+											 // 012345678
+	volatile static uint8_t *time = "00:00:00";
+	static uint8_t offset = 0x30;
+	
+	time[0] = osTimestamp.hours/10+offset;
+	time[1] = osTimestamp.hours%10+offset;
+	time[3] = osTimestamp.minutes/10+offset;
+	time[4] = osTimestamp.minutes%10+offset;
+	time[6] = osTimestamp.seconds/10+offset;
+	time[7] = osTimestamp.seconds%10+offset;
+	
+	return time;
+}
+>>>>>>> f4bb8aa860f45016e2cdfca76cddc0734b00fa4e
 
 // timer task for general-purpose polling and task triggering
 __task void TimerTask(void){
@@ -188,9 +226,15 @@ __task void TimerTask(void){
 __task void ClockTask(void){
 	uint16_t flags;
 	for(;;){
+<<<<<<< HEAD
 		flags = os_evt_get();
 		if (flags & timer1Hz == timer1Hz){
 			os_evt_wait_or(timer1Hz|hourButton|minButton, 0xffff);
+=======
+		os_evt_wait_or(timer1Hz|hourButton|minButton, 0xffff);
+		flags = os_evt_get();
+		if ((flags & timer1Hz) == timer1Hz){
+>>>>>>> f4bb8aa860f45016e2cdfca76cddc0734b00fa4e
 			os_mut_wait(&mut_osTimestamp,0xffff);
 		
 			osTimestamp.seconds++;
@@ -199,6 +243,7 @@ __task void ClockTask(void){
 			osTimestamp.hours 	+= osTimestamp.minutes/60;
 			osTimestamp.minutes %= 60;
 			osTimestamp.hours 	%= 24;
+<<<<<<< HEAD
 			os_evt_clr(timer1Hz, idClockTask);
 		
 			os_mut_release(&mut_osTimestamp);
@@ -206,23 +251,44 @@ __task void ClockTask(void){
 		}
 		if (flags & hourButton == hourButton){
 			os_evt_wait_or(timer1Hz|hourButton|minButton, 0xffff);
+=======
+			
+			os_evt_clr(timer1Hz, idClockTask);
+			flags = os_evt_get();
+			os_mut_release(&mut_osTimestamp);
+			os_evt_set(dispClock,idDispTask);
+		}
+		if ((flags & hourButton) == hourButton){
+>>>>>>> f4bb8aa860f45016e2cdfca76cddc0734b00fa4e
 			os_mut_wait(&mut_osTimestamp,0xffff);
 		
 			osTimestamp.hours++;
 			osTimestamp.hours %= 24;
 			os_evt_clr(hourButton, idClockTask);
+<<<<<<< HEAD
 		
 			os_mut_release(&mut_osTimestamp);
 			os_evt_set(dispClock,idDispTask);
 		}
 		if(flags & minButton == minButton){
 			os_evt_wait_or(timer1Hz|hourButton|minButton, 0xffff);
+=======
+			flags = os_evt_get();
+			os_mut_release(&mut_osTimestamp);
+			os_evt_set(dispClock,idDispTask);
+		}
+		if((flags & minButton) == minButton){
+>>>>>>> f4bb8aa860f45016e2cdfca76cddc0734b00fa4e
 			os_mut_wait(&mut_osTimestamp,0xffff);
 		
 			osTimestamp.minutes++;
 			osTimestamp.minutes %= 60;
 			os_evt_clr(minButton, idClockTask);
+<<<<<<< HEAD
 		
+=======
+			flags = os_evt_get();
+>>>>>>> f4bb8aa860f45016e2cdfca76cddc0734b00fa4e
 			os_mut_release(&mut_osTimestamp);
 			os_evt_set(dispClock,idDispTask);
 		}
