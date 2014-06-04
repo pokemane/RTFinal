@@ -19,7 +19,7 @@
 //uint32_t *MsgRXQ = (uint32_t *)mySRAM_BASE;	// the receive queue list
 //uint32_t *MsgSTR = (uint32_t *)(mySRAM_BASE+MESSAGE_STR_OFFSET);	// the long-term storage list space
 
-uint32_t *Storage = (uint32_t *)mySRAM_BASE;
+ListNode *Storage = (ListNode *)mySRAM_BASE;
 
 // the box for the receive queue
 _declare_box(poolRXQ, sizeof(ListNode), 4);
@@ -28,7 +28,9 @@ _declare_box(poolRXQ, sizeof(ListNode), 4);
 OS_SEM sem_Timer10Hz;
 OS_SEM sem_Timer1Hz;
 OS_SEM sem_TextRx;
+OS_SEM sem_dispUpdate;
 
+// event flag masks
 uint16_t timer10Hz = 0x0002;
 uint16_t timer1Hz = 0x0001;
 
@@ -36,6 +38,9 @@ uint16_t hourButton = 0x0010;
 uint16_t minButton	= 0x0020;
 
 uint16_t txtRx 		= 0x0001;
+
+uint16_t dispClock = 0x0001;
+uint16_t dispUser = 0x0002;
 
 /*
 * structures, variables, and mutexes
@@ -60,8 +65,10 @@ __task void ClockTask(void);
 OS_TID idClockTask;
 __task void JoystickTask(void);
 OS_TID idJoyTask;
-__task void TextParse(void);
-OS_TID idTextParse;
+__task void TextRX(void);
+OS_TID idTextRX;
+__task void DisplayTask(void);
+OS_TID idDispTask;
 
 void SerialInit(void);
 
@@ -72,6 +79,7 @@ int main (void){
 	JOY_Init();
 	LED_Init();
 	SRAM_Init();
+	GLCD_Init();
 	
 	// InitTask
 	os_sys_init_prio(InitTask, 250);
@@ -93,6 +101,7 @@ __task void InitTask(void){
 	os_sem_init(&sem_Timer10Hz,0);
 	os_sem_init(&sem_Timer1Hz,0);
 	os_sem_init(&sem_TextRx, 0);
+	os_sem_init(&sem_dispUpdate,0);
 	
 	// initialize mutexes
 	os_mut_init(&mut_osTimestamp);
@@ -120,7 +129,7 @@ __task void InitTask(void){
 	// the size of the box, which is 1000*sizeof(ListNode) plus some overhead
 	// box size is the sizeof(ListNode).
 	// math taken from the _declare_box() macro for overhead and alignment calcs
-	_init_box(Storage, ((sizeof(ListNode)+3)/4)*(1000) + 3, sizeof(ListNode));
+	_init_box(Storage, (((sizeof(ListNode)+3)/4)*(1000) + 3), sizeof(ListNode));
 	
 	
 	// List_init(lstRXQ);
@@ -134,13 +143,30 @@ __task void InitTask(void){
 	idJoyTask 	= os_tsk_create(JoystickTask, 100);
 	idClockTask = os_tsk_create(ClockTask, 175);		// high prio since we need to timestamp messages
 	idTextRX = os_tsk_create(TextRX, 170);
+	idDispTask = os_tsk_create(DisplayTask, 150);
+	
+	GLCD_Clear(Black);
 	
 	//sudoku
 	os_tsk_delete_self();
 }
 
-// timer task for general-purpose polling and task triggering
+/*
+*		Display Task
+*
+*/
 
+__task void DisplayTask(void){
+	OS_RESULT error;
+	uint16_t flags;
+	for(;;){
+		flags = os_evt_get();
+		
+			
+	}
+}
+
+// timer task for general-purpose polling and task triggering
 __task void TimerTask(void){
 	static uint32_t counter = 0;
 	static uint32_t secondFreq = 1;				// frequencies in Hz of refresh rate for these events
@@ -162,32 +188,44 @@ __task void TimerTask(void){
 __task void ClockTask(void){
 	uint16_t flags;
 	for(;;){
-		// os_sem_wait(&sem_Timer1Hz,0xffff);
-		os_evt_wait_or(timer1Hz|hourButton|minButton, 0xffff);
-		// do the clock and timestamp stuff
-		// check out the timestamp
-		os_mut_wait(&mut_osTimestamp,0xffff);
 		flags = os_evt_get();
 		if (flags & timer1Hz == timer1Hz){
-				osTimestamp.seconds++;
-				osTimestamp.minutes += osTimestamp.seconds/60;
-				osTimestamp.seconds %= 60;
-				osTimestamp.hours 	+= osTimestamp.minutes/60;
-				osTimestamp.minutes %= 60;
-				osTimestamp.hours 	%= 24;
-				os_evt_clr(timer1Hz, idClockTask);
+			os_evt_wait_or(timer1Hz|hourButton|minButton, 0xffff);
+			os_mut_wait(&mut_osTimestamp,0xffff);
+		
+			osTimestamp.seconds++;
+			osTimestamp.minutes += osTimestamp.seconds/60;
+			osTimestamp.seconds %= 60;
+			osTimestamp.hours 	+= osTimestamp.minutes/60;
+			osTimestamp.minutes %= 60;
+			osTimestamp.hours 	%= 24;
+			os_evt_clr(timer1Hz, idClockTask);
+		
+			os_mut_release(&mut_osTimestamp);
+			os_evt_set(dispClock,idDispTask);
 		}
 		if (flags & hourButton == hourButton){
-				osTimestamp.hours++;
-				osTimestamp.hours %= 24;
-				os_evt_clr(hourButton, idClockTask);
+			os_evt_wait_or(timer1Hz|hourButton|minButton, 0xffff);
+			os_mut_wait(&mut_osTimestamp,0xffff);
+		
+			osTimestamp.hours++;
+			osTimestamp.hours %= 24;
+			os_evt_clr(hourButton, idClockTask);
+		
+			os_mut_release(&mut_osTimestamp);
+			os_evt_set(dispClock,idDispTask);
 		}
 		if(flags & minButton == minButton){
-				osTimestamp.minutes++;
-				osTimestamp.minutes %= 60;
-				os_evt_clr(minButton, idClockTask);
+			os_evt_wait_or(timer1Hz|hourButton|minButton, 0xffff);
+			os_mut_wait(&mut_osTimestamp,0xffff);
+		
+			osTimestamp.minutes++;
+			osTimestamp.minutes %= 60;
+			os_evt_clr(minButton, idClockTask);
+		
+			os_mut_release(&mut_osTimestamp);
+			os_evt_set(dispClock,idDispTask);
 		}
-		os_mut_release(&mut_osTimestamp);
 	}
 }
 
@@ -230,14 +268,15 @@ __task void JoystickTask(void){	// TODO:  must get this working after the data h
 // Text Parsing and Saving
 __task void TextRX(void){
 	static ListNode	*newmsg;
+	static ListNode *message;
 	for(;;){
 		os_mbx_wait(&mbx_MsgBuffer, (void **)&newmsg, 0xffff);
 		os_mut_wait(&mut_osTimestamp, 0xffff);
 		os_mut_wait(&mut_msgList, 0xffff);
 		
-		ListNode *message = (ListNode *)_alloc_box(Storage);
+		message = _alloc_box(Storage);
 		message->data = newmsg->data;
-		message->data->time = osTimestamp;
+		message->data.time = osTimestamp;
 		List_push(lstStr, message);	// put our thing as the most recent message
 		// TODO:  implement a "You've Got Mail" counting semaphore maybe.
 		_free_box(poolRXQ, newmsg);
@@ -267,6 +306,8 @@ void USART3_IRQHandler(void){
 	static NodeData databuff;	// static buffer that just gets used over and over
 	static uint8_t countData = 0;	// our place in the buffer
 	static uint8_t sendflag = FALSE;
+	static ListNode *rxnode;
+	
 	uint8_t flag = USART3->SR & USART_SR_RXNE; // make a flag for the USART data buffer full & ready to read signal
 
 	if(flag == USART_SR_RXNE){	// if the flag is set.  If not, do nothing.
@@ -292,9 +333,9 @@ void USART3_IRQHandler(void){
 				// send to mailbox
 				sendflag = TRUE;
 			}
-						
+			
 			if (sendflag == TRUE){
-				ListNode *rxnode = (ListNodee *)_alloc_box(poolRXQ);	// TODO: change to use OS stuff
+				rxnode = _alloc_box(poolRXQ);	// TODO: change to use OS stuff
 				rxnode->data = databuff;
 				isr_mbx_send(&mbx_MsgBuffer, rxnode);
 			}
