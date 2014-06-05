@@ -55,7 +55,7 @@ List *lstRXQ;
 List *lstStr;
 // List *lstStrFree;
 
-uint8_t *timeToString(void);
+void timeToString(uint8_t time[], Timestamp* timestamp);
 
 // delcare mailbox for serial buffer
 os_mbx_declare(mbx_MsgBuffer, 4);
@@ -82,6 +82,7 @@ int main(void){
 	LED_Init();
 	SRAM_Init();
 	GLCD_Init();
+	KBD_Init();
 
 	// InitTask
 	os_sys_init_prio(InitTask, 250);
@@ -160,6 +161,7 @@ __task void InitTask(void){
 
 __task void DisplayTask(void){
 	uint16_t flag;
+	uint8_t time[] = "00:00:00";
 	for (;;){
 		os_evt_wait_or(dispClock | dispUser, 0xffff);
 		flag = os_evt_get();
@@ -167,26 +169,25 @@ __task void DisplayTask(void){
 			os_mut_wait(&mut_osTimestamp, 0xffff);
 			GLCD_SetBackColor(Black);
 			GLCD_SetTextColor(White);
-			GLCD_DisplayString(0, 0, 1, timeToString());
+			timeToString(time,&osTimestamp);
+			GLCD_DisplayString(0, 0, 1, time);
 			os_mut_release(&mut_osTimestamp);
 		}
 
 	}
 }
 
-uint8_t* timeToString(void){
+void timeToString(uint8_t time[], Timestamp* timestamp){
 	// 012345678
-	volatile static uint8_t *time = "00:00:00";
-	static uint8_t offset = 0x30;
+	//volatile static uint8_t time[] = "00:00:00";
 
-	time[0] = osTimestamp.hours / 10 + offset;
-	time[1] = osTimestamp.hours % 10 + offset;
-	time[3] = osTimestamp.minutes / 10 + offset;
-	time[4] = osTimestamp.minutes % 10 + offset;
-	time[6] = osTimestamp.seconds / 10 + offset;
-	time[7] = osTimestamp.seconds % 10 + offset;
+	time[0] = timestamp->hours / 10 + 0x30;
+	time[1] = timestamp->hours % 10 + 0x30;
+	time[3] = timestamp->minutes / 10 + 0x30;
+	time[4] = timestamp->minutes % 10 + 0x30;
+	time[6] = timestamp->seconds / 10 + 0x30;
+	time[7] = timestamp->seconds % 10 + 0x30;
 
-	return time;
 }
 
 // timer task for general-purpose polling and task triggering
@@ -252,11 +253,8 @@ __task void ClockTask(void){
 }
 
 __task void JoystickTask(void){	// TODO:  must get this working after the data handling works.  Should set events for a screen task.
-	static uint32_t newJoy, oldJoy = 0;
+	static uint32_t newJoy, oldJoy, newKeys, oldKeys = 0;
 	for (;;){
-		//os_sem_wait(&sem_Timer5Hz,0xffff);
-		//while(os_sem_wait(&sem_Timer5Hz,0x0) != OS_R_TMO){}	// clear the semaphore (force binary behavior)
-		// really this shouldn't ever be anything more thana binary semaphore but, just in case.
 		os_evt_wait_and(timer10Hz, 0xffff);
 
 		newJoy = JOY_GetKeys();
@@ -281,8 +279,19 @@ __task void JoystickTask(void){	// TODO:  must get this working after the data h
 			// send some event here
 			oldJoy = newJoy;
 		}
-		//os_mut_release(&mutCursor);
-		//os_sem_send(&semDisplayUpdate);
+		
+		newKeys = KBD_GetKeys();
+		if (newKeys != oldKeys){
+			switch (newKeys){
+				case 1:	// wakeup
+					os_evt_set(hourButton, idClockTask);
+					break;
+				case 2:	// tamper
+					os_evt_set(minButton, idClockTask);
+					break;
+			}
+			oldKeys = newKeys;
+		}
 
 	}
 }
