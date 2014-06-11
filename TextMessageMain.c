@@ -55,6 +55,7 @@ List *lstRXQ;
 List *lstStr;
 // List *lstStrFree;
 
+void printToScreen(uint8_t pos,ListNode* dispNode);
 void timeToString(uint8_t time[], Timestamp* timestamp);
 
 // delcare mailbox for serial buffer
@@ -73,6 +74,7 @@ __task void DisplayTask(void);
 OS_TID idDispTask;
 
 void SerialInit(void);
+
 
 
 int main(void){
@@ -115,14 +117,13 @@ __task void InitTask(void){
 	// lstRXQ->startAddr = MsgRXQ;
 	// the storage lists
 	os_mut_init(&mut_msgList);
-	// free spaces
-	os_mut_init(&mut_msgList);
 	// lstStrFree->startAddr = MsgSTR;
 	// used spaces
 	lstStr->count = 0;
 	lstStr->first = NULL;
 	lstStr->last = NULL;
 	// lstStrUsed->startAddr = NULL;
+	
 
 	// initialize box for receive queue
 	_init_box(poolRXQ, sizeof(poolRXQ), sizeof(ListNode));
@@ -162,6 +163,7 @@ __task void InitTask(void){
 __task void DisplayTask(void){
 	uint16_t flag;
 	uint8_t time[] = "00:00:00";
+	uint32_t* newPointer = &lstStr->count; //store value of pointee (derefence the long way)
 	for (;;){
 		os_evt_wait_or(dispClock | dispUser, 0xffff);
 		flag = os_evt_get();
@@ -173,7 +175,26 @@ __task void DisplayTask(void){
 			GLCD_DisplayString(0, 0, 1, time);
 			os_mut_release(&mut_osTimestamp);
 		}
+		os_mut_wait(&mut_msgList, 0xFFFF);
+		if(newPointer != 0){
+			
+		}else{
+			//quick and dirty way of displaying no new messages
+			GLCD_DisplayString(5,2,1,"You have no new");
+			GLCD_DisplayString(6,3,1,"messages :(");
+		}
+		os_mut_release(&mut_msgList);
+	}
+}
 
+void printToScreen(uint8_t pos, ListNode* dispNode){
+	uint8_t i=0;
+	uint8_t lineOffset=2;
+	uint8_t colOffset=0;
+	for(i=0;i<64;i++){
+		if((i+pos*16)<dispNode->data.cnt){
+		GLCD_DisplayChar((i/16)+lineOffset,(i%16)+colOffset,1,dispNode->data.text[i+pos*16]);
+		}
 	}
 }
 
