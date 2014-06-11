@@ -69,10 +69,13 @@ void List_push(List *list, ListNode *node){
 	if(list->last == NULL){
 		list->first = node;
 		list->last = node;
+		node->next = NULL;
+		node->prev = NULL;
 	} else {
 		list->last->next = node;
 		node->prev = list->last;
 		list->last = node;
+		node->next = NULL;
 	}
 	list->count++;
 }
@@ -89,10 +92,13 @@ void List_unshift(List *list, ListNode *node){
 	if(list->first == NULL){
 		list->last = node;
 		list->first = node;
+		node->next = NULL;
+		node->prev = NULL;
 	} else {
 		list->first->prev = node;
 		node->next = list->first;
 		list->first = node;
+		node->prev = NULL;
 	}
 	list->count++;
 }
