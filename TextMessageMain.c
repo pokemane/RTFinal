@@ -40,7 +40,9 @@ uint16_t minButton = 0x0020;
 uint16_t txtRx = 0x0001;
 
 uint16_t dispClock = 0x0001;
-uint16_t dispUser = 0x0002;
+uint16_t dispUser = 0x0010;
+uint16_t userDelete = 0x0020;
+uint16_t newMsg = 0x0040;
 
 /*
 * structures, variables, and mutexes
@@ -50,11 +52,19 @@ OS_MUT mut_osTimestamp;
 Timestamp osTimestamp = { 0, 0, 0 };
 
 OS_MUT mut_msgList;
-OS_MUT mut_freeList;
-List *lstRXQ;
-List *lstStr;
+OS_MUT mut_cursor;
+OS_MUT mut_LCD;
+struct Cursor{
+	ListNode* msg;
+	uint8_t row;
+};
+struct Cursor cursor;
+List lstRXQ = {0, NULL, NULL};
+List lstStr = {0, NULL, NULL};
 // List *lstStrFree;
+ListNode dfltMsg;
 
+void printToScreen(uint8_t time[], uint8_t pos,ListNode* dispNode);
 void timeToString(uint8_t time[], Timestamp* timestamp);
 
 // delcare mailbox for serial buffer
@@ -73,6 +83,7 @@ __task void DisplayTask(void);
 OS_TID idDispTask;
 
 void SerialInit(void);
+
 
 
 int main(void){
@@ -108,21 +119,24 @@ __task void InitTask(void){
 
 	// initialize mutexes
 	os_mut_init(&mut_osTimestamp);
+	os_mut_init(&mut_cursor);
+	os_mut_init(&mut_LCD);
 	// the message input queue
-	lstRXQ->count = 4;
-	lstRXQ->first = NULL;
-	lstRXQ->last = NULL;
+	lstRXQ.count = 0;
+	lstRXQ.first = NULL;
+	lstRXQ.last = NULL;
 	// lstRXQ->startAddr = MsgRXQ;
 	// the storage lists
 	os_mut_init(&mut_msgList);
-	// free spaces
-	os_mut_init(&mut_msgList);
 	// lstStrFree->startAddr = MsgSTR;
 	// used spaces
-	lstStr->count = 0;
-	lstStr->first = NULL;
-	lstStr->last = NULL;
+	lstStr.count = 0;
+	lstStr.first = NULL;
+	lstStr.last = NULL;
 	// lstStrUsed->startAddr = NULL;
+	
+	strcpy((char*)dfltMsg.data.text, "No new messages at this time.");
+	dfltMsg.data.cnt = 29;
 
 	// initialize box for receive queue
 	_init_box(poolRXQ, sizeof(poolRXQ), sizeof(ListNode));
@@ -143,13 +157,14 @@ __task void InitTask(void){
 
 	// initialize tasks
 	idTimerTask = os_tsk_create(TimerTask, 150);		// Timer task is relatively important.
-	idJoyTask = os_tsk_create(JoystickTask, 100);
+	idJoyTask = os_tsk_create(JoystickTask, 101);
 	idClockTask = os_tsk_create(ClockTask, 175);		// high prio since we need to timestamp messages
 	idTextRX = os_tsk_create(TextRX, 170);
-	idDispTask = os_tsk_create(DisplayTask, 150);
+	idDispTask = os_tsk_create(DisplayTask, 100);
 
 	GLCD_Clear(Black);
-
+	os_evt_set(dispUser, idDispTask);
+	os_evt_set(timer1Hz, idClockTask);
 	//sudoku
 	os_tsk_delete_self();
 }
@@ -160,34 +175,113 @@ __task void InitTask(void){
 */
 
 __task void DisplayTask(void){
-	uint16_t flag;
-	uint8_t time[] = "00:00:00";
+	uint8_t stime[] = "00:00:00";
+	uint16_t flags;
+	uint8_t delMode = FALSE;
+	uint8_t select = FALSE;
 	for (;;){
-		os_evt_wait_or(dispClock | dispUser, 0xffff);
-		flag = os_evt_get();
-		if (flag | dispClock == dispClock){
-			os_mut_wait(&mut_osTimestamp, 0xffff);
+		os_evt_wait_or(dispUser | userDelete | newMsg, 0xffff);
+		flags = os_evt_get();
+		
+		os_mut_wait(&mut_msgList, 0xFFFF);
+		os_mut_wait(&mut_cursor, 0xffff);
+		os_mut_wait(&mut_LCD, 0xffff);
+		
+		if((((flags & dispUser) == dispUser) || (flags & newMsg) == newMsg) && !delMode){	// if in normal mode
+			if(lstStr.count != 0){
+				if(lstStr.count == 1){
+					cursor.msg = lstStr.last;
+				}
+				printToScreen(stime, cursor.row, cursor.msg);
+			}else{
+				printToScreen(stime, 0, &dfltMsg);
+			}
+		} else if((((flags & userDelete) == userDelete) && !delMode) && lstStr.count > 0){	// if entering delete mode
+			delMode = TRUE;
+			// display the DELETE? YES/NO messages
+			GLCD_SetTextColor(White);
+			GLCD_SetBackColor(Black);
+			GLCD_DisplayString(8,0,1,(uint8_t*)"Delete Msg?");
+			GLCD_DisplayString(9,0,1,(uint8_t*)"Yes");
+			GLCD_SetTextColor(Black);
+			GLCD_SetBackColor(Red);
+			GLCD_DisplayString(9,4,1,(uint8_t*)"No");
+			select = FALSE;
+		} else if (((flags & dispUser) == dispUser) && delMode && lstStr.count > 0){ // if navigating in delete mode
+			// swap between YES and NO
+			select = select == FALSE ? TRUE : FALSE;
+			// visually swap too
+			if (select){
+				GLCD_SetTextColor(Black);
+				GLCD_SetBackColor(Red);
+				GLCD_DisplayString(9,0,1,(uint8_t*)"Yes");
+				GLCD_SetTextColor(White);
+				GLCD_SetBackColor(Black);
+				GLCD_DisplayString(9,4,1,(uint8_t*)"No");
+			} else {
+				GLCD_SetTextColor(White);
+				GLCD_SetBackColor(Black);
+				GLCD_DisplayString(9,0,1,(uint8_t*)"Yes");
+				GLCD_SetTextColor(Black);
+				GLCD_SetBackColor(Red);
+				GLCD_DisplayString(9,4,1,(uint8_t*)"No");
+			}
+		} else if (((flags & userDelete) == userDelete) && delMode && lstStr.count > 0){ // if confirming choice.
+			if (select && lstStr.count > 0){ // if we're deleting the message
+				List_remove(&lstStr, cursor.msg);
+				cursor.msg = cursor.msg->prev ? cursor.msg->prev : cursor.msg->next ? cursor.msg->next : NULL;
+			}
+			delMode = FALSE;
+			select = FALSE;
 			GLCD_SetBackColor(Black);
 			GLCD_SetTextColor(White);
-			timeToString(time,&osTimestamp);
-			GLCD_DisplayString(0, 0, 1, time);
-			os_mut_release(&mut_osTimestamp);
+			GLCD_DisplayString(8,0,1,(uint8_t *)"           ");
+			GLCD_DisplayString(9,0,1,(uint8_t *)"   ");
+			GLCD_DisplayString(9,4,1,(uint8_t *)"  ");
+			os_evt_set(newMsg, idDispTask);
 		}
-
+		
+		// diplaying the number of total messages in storage
+		GLCD_SetTextColor(White);
+		GLCD_SetBackColor(Black);
+		
+		GLCD_DisplayChar(0,17,1,lstStr.count%10+0x30);
+		GLCD_DisplayChar(0,16,1,(lstStr.count/10%10)+0x30);
+		GLCD_DisplayChar(0,15,1,lstStr.count/100%10+0x30);
+		GLCD_DisplayChar(0,14,1,lstStr.count/1000%10+0x30);
+		
+		os_mut_release(&mut_msgList);
+		os_mut_release(&mut_cursor);
+		os_mut_release(&mut_LCD);
+		
+		os_evt_clr(dispUser, idDispTask);
 	}
 }
 
-void timeToString(uint8_t time[], Timestamp* timestamp){
-	// 012345678
-	//volatile static uint8_t time[] = "00:00:00";
+void printToScreen(uint8_t time[], uint8_t pos, ListNode* dispNode){
+	uint8_t i=0;
+	uint8_t lineOffset=3;
+	uint8_t colOffset=2;
+	for(i=0;i<64;i++){
+		if((i+pos*16)<dispNode->data.cnt){
+			GLCD_SetTextColor(White);
+			GLCD_SetBackColor(Black);
+			GLCD_DisplayChar((i/16)+lineOffset, (i%16)+colOffset, 1, dispNode->data.text[i+pos*16]);
+		} else {
+			GLCD_DisplayChar((i/16)+lineOffset, (i%16)+colOffset, 1, *" ");
+		}
+	}
+	timeToString(time, &(dispNode->data.time));
+	GLCD_DisplayString(9,12,1,time);
+}
 
+void timeToString(uint8_t time[], Timestamp* timestamp){
 	time[0] = timestamp->hours / 10 + 0x30;
 	time[1] = timestamp->hours % 10 + 0x30;
 	time[3] = timestamp->minutes / 10 + 0x30;
 	time[4] = timestamp->minutes % 10 + 0x30;
 	time[6] = timestamp->seconds / 10 + 0x30;
 	time[7] = timestamp->seconds % 10 + 0x30;
-
 }
 
 // timer task for general-purpose polling and task triggering
@@ -211,6 +305,7 @@ __task void TimerTask(void){
 
 __task void ClockTask(void){
 	uint16_t flags;
+	uint8_t time[] = "00:00:00";
 	for (;;){
 		os_evt_wait_or(timer1Hz | hourButton | minButton, 0xffff);
 		flags = os_evt_get();
@@ -249,6 +344,14 @@ __task void ClockTask(void){
 			os_mut_release(&mut_osTimestamp);
 			os_evt_set(dispClock, idDispTask);
 		}
+		os_mut_wait(&mut_osTimestamp, 0xffff);
+		os_mut_wait(&mut_LCD,0xffff);
+		GLCD_SetBackColor(Black);
+		GLCD_SetTextColor(White);
+		timeToString(time,&osTimestamp);
+		GLCD_DisplayString(0, 0, 1, time);
+		os_mut_release(&mut_osTimestamp);
+		os_mut_release(&mut_LCD);
 	}
 }
 
@@ -256,22 +359,43 @@ __task void JoystickTask(void){	// TODO:  must get this working after the data h
 	static uint32_t newJoy, oldJoy, newKeys, oldKeys = 0;
 	for (;;){
 		os_evt_wait_and(timer10Hz, 0xffff);
-
+		os_mut_wait(&mut_cursor, 0xffff);
 		newJoy = JOY_GetKeys();
 		//os_mut_wait(&mutCursor,0xffff);
 		if (newJoy != oldJoy){
 			switch (newJoy){
 			case JOY_DOWN:	// cursor left
 				//CursorPos.col = (CursorPos.col+15)%16;	// edited to be the same as the other, for consistency.
+				if(cursor.msg->prev != NULL){
+					cursor.msg = cursor.msg->prev;
+					cursor.row = 0;
+				}
+				os_evt_set(dispUser, idDispTask);
 				break;
 			case JOY_UP:	// cursor right
 				//CursorPos.col = (CursorPos.col+1)%16;
+				if(cursor.msg->next != NULL){
+					cursor.msg = cursor.msg->next;
+					cursor.row = 0;
+			}
+				os_evt_set(dispUser, idDispTask);
 				break;
 			case JOY_LEFT:	// cursor up
 				//CursorPos.row = (CursorPos.row+5)%6;	// modulus by non-powers-of-2 is screwed up in a binary system without floats (F%6 = 3, not 6)
+				os_mut_wait(&mut_msgList,0xffff);
+				cursor.row = cursor.row == 0 ? 0 : (cursor.msg->data.cnt / 16) > 4 ? (cursor.row+6)%7 : 0;
+				os_evt_set(dispUser, idDispTask);
+				os_mut_release(&mut_msgList);
 				break;
 			case JOY_RIGHT:	// cursor down
 				//CursorPos.row = (CursorPos.row+1)%6;
+				os_mut_wait(&mut_msgList,0xffff);
+				cursor.row = cursor.row == 6 ? 6 : (cursor.msg->data.cnt / 16) > 4 ? (cursor.row+1)%7 : 0;
+				os_evt_set(dispUser, idDispTask);
+				os_mut_release(&mut_msgList);
+				break;
+			case JOY_CENTER:
+				os_evt_set(userDelete, idDispTask);
 				break;
 			default:
 				break;
@@ -279,6 +403,7 @@ __task void JoystickTask(void){	// TODO:  must get this working after the data h
 			// send some event here
 			oldJoy = newJoy;
 		}
+		os_mut_release(&mut_cursor);
 		
 		newKeys = KBD_GetKeys();
 		if (newKeys != oldKeys){
@@ -308,9 +433,10 @@ __task void TextRX(void){
 		message = _alloc_box(Storage);
 		message->data = newmsg->data;
 		message->data.time = osTimestamp;
-		List_push(lstStr, message);	// put our thing as the most recent message
+		List_push(&lstStr, message);	// put our thing as the most recent message
 		// TODO:  implement a "You've Got Mail" counting semaphore maybe.
 		_free_box(poolRXQ, newmsg);
+		os_evt_set(newMsg, idDispTask);
 
 		os_mut_release(&mut_osTimestamp);
 		os_mut_release(&mut_msgList);
@@ -353,24 +479,29 @@ void USART3_IRQHandler(void){
 					// send to mailbox
 					sendflag = TRUE;
 				}
-			}
-			else if (data == 0x7F){
+			}else if (data == 0x7F){
 				// backspace character
 				countData = (countData + 159) % 160;	// move the cursor back one, and clamp at zero
 
-			}
-			else if (data == 0x0D){
+			}else if (data == 0x0D){
 				// return
 				databuff.cnt = countData;
-				countData = 0;
 				// send to mailbox
-				sendflag = TRUE;
+				if(countData >0){
+					sendflag = TRUE;
+					countData = 0;
+				}
+				
+				
 			}
 
 			if (sendflag == TRUE){
 				rxnode = _alloc_box(poolRXQ);	// TODO: change to use OS stuff
-				rxnode->data = databuff;
+				//rxnode->data.text = databuff.text;
+				strcpy((char*)rxnode->data.text, (char*)databuff.text);
+				rxnode->data.cnt = databuff.cnt;
 				isr_mbx_send(&mbx_MsgBuffer, rxnode);
+				sendflag = FALSE;
 			}
 		}
 	}
