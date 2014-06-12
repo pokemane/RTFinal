@@ -411,9 +411,13 @@ void USART3_IRQHandler(void){
 			}else if (data == 0x0D){
 				// return
 				databuff.cnt = countData;
-				countData = 0;
 				// send to mailbox
-				sendflag = TRUE;
+				if(countData >0){
+					sendflag = TRUE;
+					countData = 0;
+				}
+				
+				
 			}
 
 			if (sendflag == TRUE){
