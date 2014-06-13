@@ -13,11 +13,13 @@
 #include "LinkedList.h"
 #include <rtl.h>
 
-// ONLY EVER USE THIS ONCE OR ELSE YOU LOSE ALL YOUR DATA.
-// This function is only to be used to initialize the 
-// "free space" lists ONCE, and ONLY ONCE, before the OS starts.
-// TODO: should probably sanitize the data fields in the 
-// nodes to keep from getting ghost data
+/*
+*		This first function was used to initialize the lists of
+* 	free memory to be used to hand out memory blocks to
+*		whatever wanted it.  Unneeded, though, due to using
+*		OS-managed pools.
+*/
+
 // void List_init(List *list){
 // 	uint32_t i;
 // 	if(list->startAddr != NULL){	// starting address of the list, which are 
@@ -69,13 +71,15 @@ void List_push(List *list, ListNode *node){
 	if(list->last == NULL){
 		list->first = node;
 		list->last = node;
-		node->next = NULL;
-		node->prev = NULL;
+		node->next = NULL;	// AND TODAY I LEARNED ABOUT THE 
+		node->prev = NULL;	// IMPORTANCE OF DATA SANITIZATION
 	} else {
 		list->last->next = node;
 		node->prev = list->last;
 		list->last = node;
-		node->next = NULL;
+		node->next = NULL;	// MUST MAKE ABSOLUTELY SURE YOU'RE
+												// NOT POINTING AT DATA THAT SHOULDN'T
+												// EXIST...  ABSOLUTELY.  SURE.
 	}
 	list->count++;
 }
