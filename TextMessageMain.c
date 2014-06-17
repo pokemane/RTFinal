@@ -344,7 +344,7 @@ __task void TimerTask(void){
 		os_dly_wait(10);	// base freq at 100Hz
 		counter++;
 		// set up if structure to get different timing frequencies
-		if (counter % (100 / buttonInputFreq) == 0){	// 100Hz/5Hz = 20, * 10ms = 200ms = 5Hz
+		if (counter % (100 / buttonInputFreq) == 0){	// 100Hz/10Hz = 10 * 10ms = 100ms = 10Hz
 			os_evt_set(timer10Hz, idJoyTask);
 		}
 		if (counter % (100 / secondFreq) == 0){// 100*10ms = 1000ms = 1sec
@@ -446,7 +446,7 @@ __task void JoystickTask(void){
 /*
 *		Test Rx handling.
 *		waits for the ISR to put a completed message in the mailbox,
-*		and then copies the information over to the 
+*		and then copies the information over to the linked list
 */
 __task void TextRX(void){
 	static ListNode	*newmsg;
